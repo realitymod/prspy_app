@@ -102,7 +102,7 @@ class _ServerListScreenState extends State<ServerListScreen> {
   ///
   ///
   ///
-  Widget _playerQuantity(Properties properties) {
+  Widget _playerQuantity(ServerProperties properties) {
     return Row(
       children: <Widget>[
         Column(
@@ -126,7 +126,7 @@ class _ServerListScreenState extends State<ServerListScreen> {
   ///
   ///
   ///
-  Widget _mapName(Properties properties) {
+  Widget _mapName(ServerProperties properties) {
     return Column(
       children: <Widget>[
         const Text(
@@ -145,7 +145,7 @@ class _ServerListScreenState extends State<ServerListScreen> {
   ///
   ///
   ///
-  Widget _gameMode(Properties properties) {
+  Widget _gameMode(ServerProperties properties) {
     return Column(
       children: <Widget>[
         const Text(

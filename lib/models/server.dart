@@ -9,7 +9,7 @@ class Server {
   String? serverId;
   bool? hasMumble;
   String? countryFlag;
-  Properties? properties;
+  ServerProperties? properties;
   List<Player> players = <Player>[];
 
   ///
@@ -24,7 +24,7 @@ class Server {
     serverId = json['serverId'];
     hasMumble = json['hasMumble'];
     countryFlag = json['countryFlag'];
-    properties = Properties.fromJson(json['properties']);
+    properties = ServerProperties.fromJson(json['properties']);
     for (dynamic player in json['players']) {
       players.add(Player.fromJson(player));
     }

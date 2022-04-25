@@ -1,7 +1,7 @@
 ///
 ///
 ///
-class Properties {
+class ServerProperties {
   String? gamename;
   String hostname = '';
   String? gamever;
@@ -26,7 +26,7 @@ class Properties {
   ///
   ///
   ///
-  Properties.fromJson(Map<String, dynamic> json) {
+  ServerProperties.fromJson(Map<String, dynamic> json) {
     gamename = json['gamename'];
     hostname = json['hostname'];
     gamever = json['gamever'];
