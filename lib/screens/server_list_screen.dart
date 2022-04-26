@@ -1,8 +1,7 @@
-import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
 import 'package:prspy/models/server.dart';
-import 'package:prspy/widgets/custom_server_list_tile_subtitle.dart';
+import 'package:prspy/widgets/custom_server_list_tile.dart';
 
 ///
 ///
@@ -88,41 +87,15 @@ class _ServerListScreenState extends State<ServerListScreen> {
               itemCount: servers.length,
               itemBuilder: (BuildContext context, int index) {
                 Server server = servers.elementAt(index);
-                return Card(
-                  color: index.isEven ? Colors.white38 : Colors.white60,
-                  child: ListTile(
-                    horizontalTitleGap: 0,
-                    minLeadingWidth: 25,
-                    dense: true,
-                    leading: Container(
-                      height: double.infinity,
-                      child: Flag.fromString(
-                        server.countryFlag!,
-                        width: 17,
-                        height: 17,
-                      ),
-                    ),
-                    title: Text(
-                      server.properties!.hostname.trim(),
-                      style: _listTileTextStyle(index),
-                    ),
-                    subtitle: CustomServerListTileSubtitle(
-                      serverProperties: server.properties!,
-                    ),
-                  ),
+                return CustomServerListTile(
+                  server: server,
+                  index: index,
                 );
               },
             );
           }
         },
       ),
-    );
-  }
-
-  TextStyle _listTileTextStyle(int index) {
-    return TextStyle(
-      color: Colors.black,
-      fontWeight: index.isEven ? null : FontWeight.w400,
     );
   }
 }
