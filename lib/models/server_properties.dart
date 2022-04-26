@@ -20,6 +20,11 @@ class ServerProperties {
   String? bf2CommunitylogoUrl;
   String? bf2Team1;
   String? bf2Team2;
+
+  /// 16 = Infantary
+  /// 32 = Alternative
+  /// 64 = Standard
+  /// 128 = Large
   String? bf2Mapsize;
   String? bf2Reservedslots;
 
@@ -47,11 +52,31 @@ class ServerProperties {
     bf2Team2 = json['bf2_team2'];
     bf2Mapsize = json['bf2_mapsize'];
     bf2Reservedslots = json['bf2_reservedslots'];
+
     gametype = gametype!.split('_').last.toLowerCase();
+
     if (gametype == 'coop') {
-      gametype = 'Co-Operative';
+      gametype = 'Co-Op';
     } else if (gametype == 'cq') {
       gametype = 'AAS';
+    }
+
+    // Capitalize the first letter of the gametype
+    gametype =
+        '${gametype!.substring(0, 1).toUpperCase()}${gametype!.substring(1, gametype!.length)}';
+
+    // Remove the version tag from the begining of the hostname
+    hostname = hostname.substring(13);
+
+    // Set the correct layout based on map size
+    if (bf2Mapsize == '16') {
+      bf2Mapsize = 'Inf';
+    } else if (bf2Mapsize == '32') {
+      bf2Mapsize = 'Alt';
+    } else if (bf2Mapsize == '64') {
+      bf2Mapsize = 'Std';
+    } else if (bf2Mapsize == '128') {
+      bf2Mapsize = 'Lrg';
     }
   }
 }

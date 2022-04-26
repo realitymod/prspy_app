@@ -1,7 +1,7 @@
+import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
 import 'package:prspy/models/server.dart';
-import 'package:prspy/models/server_properties.dart';
 
 ///
 ///
@@ -34,6 +34,17 @@ class _ServerListScreenState extends State<ServerListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('PRSPY'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              setState(() {});
+            },
+          ),
+        ],
+      ),
       body: FutureBuilder<List<Server>?>(
         future: widget.serverInfoConsumer.fetchServerList(),
         builder: (BuildContext context, AsyncSnapshot<List<Server>?> snapshot) {
@@ -47,15 +58,22 @@ class _ServerListScreenState extends State<ServerListScreen> {
                     width: 75,
                     child: CircularProgressIndicator.adaptive(),
                   ),
-                  Text('Fetching servers'),
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('Fetching servers'),
+                  ),
                 ],
               ),
             );
           } else if (snapshot.hasError) {
             return Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
-                  Icon(Icons.warning),
+                  Icon(
+                    Icons.warning,
+                    size: 45,
+                  ),
                   Text(
                     'Failed to fetch server data.\nTry again later.',
                     textAlign: TextAlign.center,
@@ -65,27 +83,42 @@ class _ServerListScreenState extends State<ServerListScreen> {
             );
           } else {
             List<Server> servers = snapshot.data!;
-            return ListView.separated(
+            return ListView.builder(
               itemCount: servers.length,
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(),
               itemBuilder: (BuildContext context, int index) {
                 Server server = servers.elementAt(index);
                 return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  color: index.isEven ? Colors.white38 : Colors.white60,
+                  child: ListTile(
+                    horizontalTitleGap: 0,
+                    minLeadingWidth: 25,
+                    dense: true,
+                    leading: Container(
+                      height: double.infinity,
+                      child: Flag.fromString(
+                        server.countryFlag!,
+                        width: 17,
+                        height: 17,
+                      ),
+                    ),
+                    title: Text(
+                      server.properties!.hostname.trim(),
+                      style: _listTileTextStyle(index),
+                    ),
+                    subtitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(server.properties!.hostname),
-                        const Divider(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            _playerQuantity(server.properties!),
-                            _mapName(server.properties!),
-                            _gameMode(server.properties!),
-                          ],
+                        Text(
+                          '${server.properties!.numplayers}/${server.properties!.maxplayers}',
+                          style: _listTileTextStyle(index),
+                        ),
+                        Text(
+                          '[${server.properties!.gametype} ${server.properties!.bf2Mapsize}]',
+                          style: _listTileTextStyle(index),
+                        ),
+                        Text(
+                          server.properties!.mapname!,
+                          style: _listTileTextStyle(index),
                         ),
                       ],
                     ),
@@ -99,65 +132,10 @@ class _ServerListScreenState extends State<ServerListScreen> {
     );
   }
 
-  ///
-  ///
-  ///
-  Widget _playerQuantity(ServerProperties properties) {
-    return Row(
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            const Text(
-              'Players',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              '${properties.numplayers}/${properties.maxplayers}',
-              textAlign: TextAlign.start,
-            )
-          ],
-        )
-      ],
-    );
-  }
-
-  ///
-  ///
-  ///
-  Widget _mapName(ServerProperties properties) {
-    return Column(
-      children: <Widget>[
-        const Text(
-          'Map Name',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(
-          properties.mapname!,
-        ),
-      ],
-    );
-  }
-
-  ///
-  ///
-  ///
-  Widget _gameMode(ServerProperties properties) {
-    return Column(
-      children: <Widget>[
-        const Text(
-          'Game Mode',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(
-          properties.gametype!.split('_').last.toUpperCase(),
-        ),
-      ],
+  TextStyle _listTileTextStyle(int index) {
+    return TextStyle(
+      color: Colors.black,
+      fontWeight: index.isEven ? null : FontWeight.w400,
     );
   }
 }
