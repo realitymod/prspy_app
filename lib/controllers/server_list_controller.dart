@@ -30,7 +30,11 @@ class ServerListController {
       servers = await consumer.fetchServerList();
       fetchStatus.value = FetchStatus.fetched;
     } catch (err) {
-      fetchStatus.value = FetchStatus.error;
+      if (servers != null) {
+        fetchStatus.value = FetchStatus.fetched;
+      } else {
+        fetchStatus.value = FetchStatus.error;
+      }
     }
   }
 }

@@ -53,14 +53,14 @@ class _ServerListScreenState extends State<ServerListScreen> {
         title: Text('PRSPY'),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.filter_list_alt),
-          ),
-          IconButton(
             icon: Icon(Icons.refresh),
             onPressed: () {
               _controller.fetchServers(consumer: widget.serverInfoConsumer);
             },
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.filter_list_alt),
           ),
         ],
       ),
