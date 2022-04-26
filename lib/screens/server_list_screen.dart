@@ -1,8 +1,8 @@
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
-import 'package:prspy/custom_server_list_tile_subtitle.dart';
 import 'package:prspy/models/server.dart';
+import 'package:prspy/widgets/custom_server_list_tile_subtitle.dart';
 
 ///
 ///
