@@ -29,7 +29,6 @@ class CustomServerListTile extends StatelessWidget {
       child: ListTile(
         horizontalTitleGap: 0,
         minLeadingWidth: 25,
-        dense: true,
         leading: Container(
           height: double.infinity,
           child: Flag.fromString(
@@ -38,11 +37,15 @@ class CustomServerListTile extends StatelessWidget {
             height: 17,
           ),
         ),
-        title: Text(
-          server.properties!.hostname.trim(),
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: index.isEven ? null : FontWeight.w400,
+        title: FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Text(
+            server.properties!.hostname.trim(),
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: index.isEven ? null : FontWeight.w400,
+            ),
           ),
         ),
         subtitle: CustomServerListTileSubtitle(

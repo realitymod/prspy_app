@@ -27,14 +27,18 @@ class CustomServerListTileSubtitle extends StatelessWidget {
           '${serverProperties.numplayers}/${serverProperties.maxplayers}',
           style: _textStyle,
         ),
-        Text(
-          '[${serverProperties.gametype} ${serverProperties.bf2Mapsize}]',
-          style: _textStyle,
-        ),
-        Text(
-          serverProperties.mapname!,
-          style: _textStyle,
-        ),
+        Row(
+          children: <Widget>[
+            Text(
+              '${serverProperties.mapname} - ',
+              style: _textStyle,
+            ),
+            Text(
+              '[${serverProperties.gametype} ${serverProperties.bf2Mapsize}]',
+              style: _textStyle,
+            ),
+          ],
+        )
       ],
     );
   }
