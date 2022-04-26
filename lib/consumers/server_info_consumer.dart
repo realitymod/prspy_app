@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/models/test_only.dart';
@@ -19,7 +20,7 @@ class ServerInfoConsumer {
   ///
   ///
   ///
-  Future<List<Server>?> fetchServerList() async {
+  Future<ObserverList<Server>?> fetchServerList() async {
     // Response response = await _client.get(
     //   Uri.https('servers.realitymod.com', 'api/ServerInfo'),
     // );
@@ -35,7 +36,7 @@ class ServerInfoConsumer {
     //   return servers;
     // }
 
-    List<Server> servers = <Server>[];
+    ObserverList<Server> servers = ObserverList<Server>();
     Map<String, dynamic> serverData = json.decode(TestOnly.serverList());
     for (dynamic server in serverData['servers']) {
       try {

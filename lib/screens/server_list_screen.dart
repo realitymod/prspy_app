@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
+import 'package:prspy/controllers/server_list_controller.dart';
+import 'package:prspy/enums/fetch_status.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/widgets/custom_server_list_tile.dart';
 
@@ -28,6 +30,19 @@ class ServerListScreen extends StatefulWidget {
 ///
 ///
 class _ServerListScreenState extends State<ServerListScreen> {
+  late final ServerListController _controller = ServerListController(
+    context: context,
+  );
+
+  ///
+  ///
+  ///
+  @override
+  void initState() {
+    super.initState();
+    _controller.fetchServers(consumer: widget.serverInfoConsumer);
+  }
+
   ///
   ///
   ///
@@ -38,63 +53,81 @@ class _ServerListScreenState extends State<ServerListScreen> {
         title: Text('PRSPY'),
         actions: <Widget>[
           IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.filter_list_alt),
+          ),
+          IconButton(
             icon: Icon(Icons.refresh),
             onPressed: () {
-              setState(() {});
+              _controller.fetchServers(consumer: widget.serverInfoConsumer);
             },
           ),
         ],
       ),
-      body: FutureBuilder<List<Server>?>(
-        future: widget.serverInfoConsumer.fetchServerList(),
-        builder: (BuildContext context, AsyncSnapshot<List<Server>?> snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  SizedBox(
-                    height: 75,
-                    width: 75,
-                    child: CircularProgressIndicator.adaptive(),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Text('Fetching servers'),
-                  ),
-                ],
-              ),
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Icon(
-                    Icons.warning,
-                    size: 45,
-                  ),
-                  Text(
-                    'Failed to fetch server data.\nTry again later.',
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            );
-          } else {
-            List<Server> servers = snapshot.data!;
-            return ListView.builder(
-              itemCount: servers.length,
-              itemBuilder: (BuildContext context, int index) {
-                Server server = servers.elementAt(index);
-                return CustomServerListTile(
-                  server: server,
-                  index: index,
-                );
-              },
-            );
+      body: ValueListenableBuilder<FetchStatus>(
+        valueListenable: _controller.fetchStatus,
+        builder: (BuildContext context, FetchStatus value, Widget? child) {
+          switch (value) {
+            case FetchStatus.fetching:
+              return _fetchingServers();
+            case FetchStatus.fetched:
+              return ListView.builder(
+                itemCount: _controller.servers!.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Server server = _controller.servers!.elementAt(index);
+                  return CustomServerListTile(
+                    server: server,
+                    index: index,
+                  );
+                },
+              );
+            case FetchStatus.error:
+              return _errorOnFetching();
           }
         },
+      ),
+    );
+  }
+
+  ///
+  ///
+  ///
+  Widget _fetchingServers() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const <Widget>[
+          SizedBox(
+            height: 75,
+            width: 75,
+            child: CircularProgressIndicator.adaptive(),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Text('Fetching servers'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  ///
+  ///
+  ///
+  Widget _errorOnFetching() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const <Widget>[
+          Icon(
+            Icons.warning,
+            size: 45,
+          ),
+          Text(
+            'Failed to fetch server data.\nTry again later.',
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
