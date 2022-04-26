@@ -1,6 +1,7 @@
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
+import 'package:prspy/custom_server_list_tile_subtitle.dart';
 import 'package:prspy/models/server.dart';
 
 ///
@@ -105,22 +106,8 @@ class _ServerListScreenState extends State<ServerListScreen> {
                       server.properties!.hostname.trim(),
                       style: _listTileTextStyle(index),
                     ),
-                    subtitle: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          '${server.properties!.numplayers}/${server.properties!.maxplayers}',
-                          style: _listTileTextStyle(index),
-                        ),
-                        Text(
-                          '[${server.properties!.gametype} ${server.properties!.bf2Mapsize}]',
-                          style: _listTileTextStyle(index),
-                        ),
-                        Text(
-                          server.properties!.mapname!,
-                          style: _listTileTextStyle(index),
-                        ),
-                      ],
+                    subtitle: CustomServerListTileSubtitle(
+                      serverProperties: server.properties!,
                     ),
                   ),
                 );
