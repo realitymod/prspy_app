@@ -3,6 +3,7 @@ import 'package:prspy/consumers/server_info_consumer.dart';
 import 'package:prspy/controllers/server_list_controller.dart';
 import 'package:prspy/enums/fetch_status.dart';
 import 'package:prspy/models/server.dart';
+import 'package:prspy/widgets/custom_filter_options.dart';
 import 'package:prspy/widgets/custom_server_list_tile.dart';
 
 ///
@@ -58,9 +59,8 @@ class _ServerListScreenState extends State<ServerListScreen> {
               _controller.fetchServers(consumer: widget.serverInfoConsumer);
             },
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.filter_list_alt),
+          CustomFilterOptions(
+            onFilterChanged: _controller.applyFilters,
           ),
         ],
       ),

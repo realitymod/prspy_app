@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
 import 'package:prspy/enums/fetch_status.dart';
+import 'package:prspy/models/config.dart';
 import 'package:prspy/models/server.dart';
 
 ///
@@ -9,8 +9,9 @@ import 'package:prspy/models/server.dart';
 ///
 class ServerListController {
   final BuildContext context;
-  ObserverList<Server>? filteredServers;
-  ObserverList<Server>? _servers;
+  List<Server>? filteredServers;
+  List<Server>? _servers;
+  final Config _config = Config();
   final ValueNotifier<FetchStatus> fetchStatus = ValueNotifier<FetchStatus>(
     FetchStatus.fetching,
   );
@@ -37,6 +38,51 @@ class ServerListController {
       } else {
         fetchStatus.value = FetchStatus.error;
       }
+    }
+  }
+
+  ///
+  ///
+  ///
+  void applyFilters() {
+    fetchStatus.value = FetchStatus.fetching;
+    filteredServers = _servers;
+    _showHideEmptyServers();
+    _showHidePasswordedServers();
+    _showHideCoopServers();
+    fetchStatus.value = FetchStatus.fetched;
+  }
+
+  ///
+  ///
+  ///
+  void _showHideEmptyServers() {
+    if (_config.hideEmptyServers) {
+      filteredServers = filteredServers
+          ?.where((Server server) => server.players.isNotEmpty)
+          .toList();
+    }
+  }
+
+  ///
+  ///
+  ///
+  void _showHidePasswordedServers() {
+    if (_config.hidePasswordedServers) {
+      filteredServers = filteredServers
+          ?.where((Server server) => server.properties!.password == '0')
+          .toList();
+    }
+  }
+
+  ///
+  ///
+  ///
+  void _showHideCoopServers() {
+    if (_config.hideCoopServers) {
+      filteredServers = filteredServers
+          ?.where((Server server) => server.properties!.gametype != 'Co-Op')
+          .toList();
     }
   }
 }
