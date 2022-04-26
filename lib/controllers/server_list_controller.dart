@@ -9,7 +9,8 @@ import 'package:prspy/models/server.dart';
 ///
 class ServerListController {
   final BuildContext context;
-  ObserverList<Server>? servers;
+  ObserverList<Server>? filteredServers;
+  ObserverList<Server>? _servers;
   final ValueNotifier<FetchStatus> fetchStatus = ValueNotifier<FetchStatus>(
     FetchStatus.fetching,
   );
@@ -27,10 +28,11 @@ class ServerListController {
   Future<void> fetchServers({required ServerInfoConsumer consumer}) async {
     try {
       fetchStatus.value = FetchStatus.fetching;
-      servers = await consumer.fetchServerList();
+      _servers = await consumer.fetchServerList();
+      filteredServers = _servers;
       fetchStatus.value = FetchStatus.fetched;
     } catch (err) {
-      if (servers != null) {
+      if (filteredServers != null) {
         fetchStatus.value = FetchStatus.fetched;
       } else {
         fetchStatus.value = FetchStatus.error;
