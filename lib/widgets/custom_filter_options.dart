@@ -23,8 +23,8 @@ class CustomFilterOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
       icon: Icon(Icons.filter_list_alt),
-      itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-        new PopupMenuItem<String>(
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+        PopupMenuItem<String>(
           child: Text(
             '${_config.hideEmptyServers ? 'Show' : 'Hide'} empty servers',
           ),
@@ -33,7 +33,7 @@ class CustomFilterOptions extends StatelessWidget {
             onFilterChanged();
           },
         ),
-        new PopupMenuItem<String>(
+        PopupMenuItem<String>(
           child: Text(
             '${_config.hidePasswordedServers ? 'Show' : 'Hide'} passworded servers',
           ),
@@ -42,7 +42,7 @@ class CustomFilterOptions extends StatelessWidget {
             onFilterChanged();
           },
         ),
-        new PopupMenuItem<String>(
+        PopupMenuItem<String>(
           child: Text(
             '${_config.hideCoopServers ? 'Show' : 'Hide'} Co-Op servers',
           ),

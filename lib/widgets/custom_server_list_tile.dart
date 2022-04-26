@@ -25,7 +25,6 @@ class CustomServerListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: index.isEven ? Colors.white38 : Colors.white60,
       child: ListTile(
         horizontalTitleGap: 0,
         minLeadingWidth: 25,
@@ -42,10 +41,6 @@ class CustomServerListTile extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             server.properties!.hostname.trim(),
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: index.isEven ? null : FontWeight.w400,
-            ),
           ),
         ),
         subtitle: CustomServerListTileSubtitle(
@@ -53,7 +48,7 @@ class CustomServerListTile extends StatelessWidget {
         ),
         trailing: Icon(
           Icons.chevron_right,
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
     );
