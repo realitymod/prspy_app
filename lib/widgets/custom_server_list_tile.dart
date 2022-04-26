@@ -8,14 +8,14 @@ import 'package:prspy/widgets/custom_server_list_tile_subtitle.dart';
 ///
 class CustomServerListTile extends StatelessWidget {
   final Server server;
-  final int index;
+  final Function() onTap;
 
   ///
   ///
   ///
   const CustomServerListTile({
     required this.server,
-    required this.index,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -50,6 +50,7 @@ class CustomServerListTile extends StatelessWidget {
           Icons.chevron_right,
           color: Colors.white,
         ),
+        onTap: onTap,
       ),
     );
   }

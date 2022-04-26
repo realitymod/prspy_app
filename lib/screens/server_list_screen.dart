@@ -3,6 +3,7 @@ import 'package:prspy/consumers/server_info_consumer.dart';
 import 'package:prspy/controllers/server_list_controller.dart';
 import 'package:prspy/enums/fetch_status.dart';
 import 'package:prspy/models/server.dart';
+import 'package:prspy/screens/server_detail_screen.dart';
 import 'package:prspy/widgets/custom_filter_options.dart';
 import 'package:prspy/widgets/custom_server_list_tile.dart';
 
@@ -77,7 +78,13 @@ class _ServerListScreenState extends State<ServerListScreen> {
                   Server server = _controller.filteredServers!.elementAt(index);
                   return CustomServerListTile(
                     server: server,
-                    index: index,
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => ServerDetailScreen(server: server),
+                        ),
+                      );
+                    },
                   );
                 },
               );
