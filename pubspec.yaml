@@ -17,6 +17,8 @@ dependencies:
   flag: 6.0.0
   # https://pub.dev/packages/marquee/install
   marquee: 2.2.1
+  # https://pub.dev/packages/url_launcher
+  url_launcher: 6.1.0
 
 
   cupertino_icons: ^1.0.2
@@ -33,3 +35,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/ca/certificate.pem
+    - assets/images/

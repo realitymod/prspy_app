@@ -1,7 +1,10 @@
+import 'package:flag/flag_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/nullable_string_helper.dart';
 import 'package:prspy/widgets/custom_description.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 ///
 ///
@@ -60,8 +63,88 @@ class CustomServerInformation extends StatelessWidget {
               CustomDescription(
                 label: 'Players:',
                 value:
-                    '${server.properties!.numplayers}/${server.properties!.maxplayers}',
+                    '${server.properties!.numplayers}/${server.properties!.maxplayers} '
+                    '(${server.properties!.bf2Reservedslots})',
               ),
+              if (!server.properties!.nextMap.isNullOrEmpty)
+                CustomDescription(
+                  label: 'Next map:',
+                  value: server.properties!.nextMap!,
+                ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Wrap(
+                  spacing: 10,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: <Widget>[
+                    Flag.fromString(
+                      server.countryFlag!,
+                      width: 25,
+                      height: 25,
+                    ),
+                    Tooltip(
+                      message: server.properties!.bf2Os!.contains('linux')
+                          ? 'Linux server'
+                          : 'Windows Server',
+                      child: SizedBox(
+                        width: 22,
+                        height: 22,
+                        child: Image.asset(
+                          'assets/images/${server.properties!.bf2Os}',
+                        ),
+                      ),
+                    ),
+                    if (server.hasMumble!)
+                      Tooltip(
+                        message: 'Mumble VOIP enabled',
+                        child: Container(
+                          constraints: BoxConstraints(
+                            maxWidth: 25,
+                            maxHeight: 25,
+                          ),
+                          child: Icon(
+                            Icons.headset,
+                          ),
+                        ),
+                      ),
+                    if (!server.properties!.bf2DDl.isNullOrEmpty)
+                      Container(
+                        child: IconButton(
+                          constraints: BoxConstraints(
+                            maxWidth: 25,
+                            maxHeight: 25,
+                          ),
+                          tooltip:
+                              'BattleRecorder Enabled, click to visit BR Downloads page',
+                          padding: EdgeInsets.zero,
+                          icon: Icon(Icons.play_arrow_sharp),
+                          splashRadius: 1,
+                          onPressed: () {
+                            launchUrlString(
+                              server.properties!.bf2DDl!,
+                              mode: LaunchMode.externalApplication,
+                            );
+                          },
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              CustomDescription(
+                label: 'Server Message',
+                value: server.properties!.bf2Sponsortext!.trim(),
+                valueTextAlign: TextAlign.justify,
+              ),
+              if (!server.properties!.bf2CommunitylogoUrl.isNullOrEmpty)
+                GestureDetector(
+                  onTap: () {
+                    launchUrlString(server.properties!.bf2CommunitylogoUrl!);
+                  },
+                  child: CustomDescription(
+                    label: 'Community',
+                    value: server.properties!.bf2CommunitylogoUrl!,
+                  ),
+                ),
             ],
           ),
         ),

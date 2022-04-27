@@ -1,7 +1,4 @@
-analizer:
-  # exclude: [ example/** ]
-  strong-mode:
-    implicit-casts: false
+analyzer:
   plugins:
     - dart_code_metrics
 

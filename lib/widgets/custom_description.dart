@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class CustomDescription extends StatelessWidget {
   final String label;
   final String value;
+  final TextAlign? valueTextAlign;
 
   ///
   ///
@@ -13,6 +14,7 @@ class CustomDescription extends StatelessWidget {
   const CustomDescription({
     required this.label,
     required this.value,
+    this.valueTextAlign,
     Key? key,
   }) : super(key: key);
 
@@ -34,6 +36,7 @@ class CustomDescription extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8),
           child: Text(
             value,
+            textAlign: valueTextAlign,
             style: TextStyle(
               fontSize: 14,
             ),

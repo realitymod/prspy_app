@@ -22,6 +22,7 @@ class ServerProperties {
   String? bf2CommunitylogoUrl;
   Faction? faction1;
   Faction? faction2;
+  String? nextMap;
 
   /// 16 = Infantary
   /// 32 = Alternative
@@ -45,7 +46,7 @@ class ServerProperties {
     password = json['password'];
     timelimit = json['timelimit'];
     roundtime = json['roundtime'];
-    bf2Os = json['bf2_os'];
+    bf2Os = '${json['bf2_os']}.png';
     bf2DDl = json['bf2_d_dl'];
     bf2Sponsortext = json['bf2_sponsortext'];
     bf2SponsorlogoUrl = json['bf2_sponsorlogo_url'];
@@ -69,6 +70,9 @@ class ServerProperties {
 
     // Remove the version tag from the begining of the hostname
     hostname = hostname.substring(13);
+    if (bf2Sponsortext!.split('|').length > 0) {
+      nextMap = bf2Sponsortext!.split('|').last.trim().replaceAll('-', '');
+    }
 
     // Set the correct layout based on map size
     if (bf2Mapsize == '16') {
