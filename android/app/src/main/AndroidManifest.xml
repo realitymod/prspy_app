@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.alvarocda.prspy">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="prspy"
+        android:label="PRSPY"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
