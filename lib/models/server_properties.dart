@@ -47,6 +47,20 @@ class ServerProperties {
     hostname = hostname.substring(13);
     if (bf2Sponsortext.split('|').length > 0) {
       nextMap = bf2Sponsortext.split('|').last.trim().replaceAll('-', '');
+
+      ///As there is no kind of pattern in the place where it indicates the next
+      ///map, the if below checks if the string that was placed inside the next
+      /// map is really a map by checking the layout
+      if (!nextMap.contains('Std') &&
+          !nextMap.contains('Alt') &&
+          !nextMap.contains('Inf') &&
+          !nextMap.contains('Lrg')) {
+        nextMap = '';
+      }
+
+      ///I noticed that one of the servers put the name of the next map along
+      ///with a text indicating what the next map is, the line below corrects that.
+      nextMap = nextMap.replaceAll('Next map:', '').trim();
     }
   }
 }
