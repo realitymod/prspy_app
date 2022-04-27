@@ -3,6 +3,7 @@ import 'package:marquee/marquee.dart';
 import 'package:prspy/models/player.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/widgets/custom_player_list.dart';
+import 'package:prspy/widgets/custom_server_information.dart';
 
 ///
 ///
@@ -26,6 +27,8 @@ class ServerDetailScreen extends StatefulWidget {
 ///
 ///
 class _ServerDetailScreenState extends State<ServerDetailScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   ///
   ///
   ///
@@ -34,8 +37,13 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        key: _scaffoldKey,
+        endDrawer: CustomServerInformation(
+          server: widget.server,
+        ),
         appBar: AppBar(
           leadingWidth: 25,
+          leading: BackButton(),
           title: SizedBox(
             height: AppBar().preferredSize.height,
             child: Marquee(
@@ -57,7 +65,9 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.info),
-              onPressed: () {},
+              onPressed: () {
+                _scaffoldKey.currentState!.openEndDrawer();
+              },
             ),
           ],
         ),
