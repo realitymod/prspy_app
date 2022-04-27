@@ -1,3 +1,5 @@
+import 'package:prspy/models/faction.dart';
+
 ///
 ///
 ///
@@ -18,8 +20,8 @@ class ServerProperties {
   String? bf2Sponsortext;
   String? bf2SponsorlogoUrl;
   String? bf2CommunitylogoUrl;
-  String? bf2Team1;
-  String? bf2Team2;
+  Faction? faction1;
+  Faction? faction2;
 
   /// 16 = Infantary
   /// 32 = Alternative
@@ -48,8 +50,8 @@ class ServerProperties {
     bf2Sponsortext = json['bf2_sponsortext'];
     bf2SponsorlogoUrl = json['bf2_sponsorlogo_url'];
     bf2CommunitylogoUrl = json['bf2_communitylogo_url'];
-    bf2Team1 = json['bf2_team1'];
-    bf2Team2 = json['bf2_team2'];
+    faction1 = Faction.fromCode(code: json['bf2_team1']);
+    faction2 = Faction.fromCode(code: json['bf2_team2']);
     bf2Mapsize = json['bf2_mapsize'];
     bf2Reservedslots = json['bf2_reservedslots'];
 

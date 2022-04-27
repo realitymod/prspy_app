@@ -42,7 +42,7 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           server: widget.server,
         ),
         appBar: AppBar(
-          leadingWidth: 25,
+          leadingWidth: 30,
           leading: BackButton(),
           title: SizedBox(
             height: AppBar().preferredSize.height,
@@ -55,10 +55,10 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
-                child: Text(widget.server.properties!.bf2Team2!),
+                child: Text(widget.server.properties!.faction2!.name),
               ),
               Tab(
-                child: Text(widget.server.properties!.bf2Team1!),
+                child: Text(widget.server.properties!.faction1!.name),
               ),
             ],
           ),
