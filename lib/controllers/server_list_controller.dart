@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
 import 'package:prspy/enums/fetch_status.dart';
@@ -32,7 +34,9 @@ class ServerListController {
       _servers = await consumer.fetchServerList();
       filteredServers = _servers;
       fetchStatus.value = FetchStatus.fetched;
-    } catch (err) {
+    } catch (err, stack) {
+      log(err.toString());
+      log(stack.toString());
       if (filteredServers != null) {
         fetchStatus.value = FetchStatus.fetched;
       } else {
@@ -59,7 +63,7 @@ class ServerListController {
   void _showHideEmptyServers() {
     if (_config.hideEmptyServers) {
       filteredServers = filteredServers
-          ?.where((Server server) => server.properties!.numplayers != '0')
+          ?.where((Server server) => server.properties.numplayers != '0')
           .toList();
     }
   }
@@ -70,7 +74,7 @@ class ServerListController {
   void _showHidePasswordedServers() {
     if (_config.hidePasswordedServers) {
       filteredServers = filteredServers
-          ?.where((Server server) => server.properties!.password == '0')
+          ?.where((Server server) => server.properties.password == '0')
           .toList();
     }
   }
@@ -81,7 +85,7 @@ class ServerListController {
   void _showHideCoopServers() {
     if (_config.hideCoopServers) {
       filteredServers = filteredServers
-          ?.where((Server server) => server.properties!.gametype != 'Co-Op')
+          ?.where((Server server) => server.properties.map.gameType != 'Co-Op')
           .toList();
     }
   }

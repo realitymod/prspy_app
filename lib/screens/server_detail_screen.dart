@@ -47,7 +47,7 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           title: SizedBox(
             height: AppBar().preferredSize.height,
             child: Marquee(
-              text: widget.server.properties!.hostname,
+              text: widget.server.properties.hostname,
               blankSpace: 150,
               numberOfRounds: 1,
             ),
@@ -55,10 +55,10 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
-                child: Text(widget.server.properties!.faction2!.name),
+                child: Text(widget.server.properties.map.faction2.name),
               ),
               Tab(
-                child: Text(widget.server.properties!.faction1!.name),
+                child: Text(widget.server.properties.map.faction1.name),
               ),
             ],
           ),

@@ -1,6 +1,5 @@
 import 'package:flag/flag_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/nullable_string_helper.dart';
 import 'package:prspy/widgets/custom_description.dart';
@@ -35,7 +34,7 @@ class CustomServerInformation extends StatelessWidget {
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
-                  server.properties!.hostname.trim(),
+                  server.properties.hostname.trim(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -46,30 +45,30 @@ class CustomServerInformation extends StatelessWidget {
               Divider(
                 thickness: 2,
               ),
-              if (!server.properties!.bf2SponsorlogoUrl.isNullOrEmpty)
+              if (!server.properties.bf2SponsorlogoUrl.isNullOrEmpty)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
-                  child: Image.network(server.properties!.bf2SponsorlogoUrl!),
+                  child: Image.network(server.properties.bf2SponsorlogoUrl),
                 ),
               CustomDescription(
                 label: 'Map:',
-                value: server.properties!.mapname!,
+                value: server.properties.map.name,
               ),
               CustomDescription(
                 label: 'Gamemode:',
                 value:
-                    '${server.properties!.bf2Mapsize} - ${server.properties!.gametype}',
+                    '${server.properties.map.layout} - ${server.properties.map.gameType}',
               ),
               CustomDescription(
                 label: 'Players:',
                 value:
-                    '${server.properties!.numplayers}/${server.properties!.maxplayers} '
-                    '(${server.properties!.bf2Reservedslots})',
+                    '${server.properties.numplayers}/${server.properties.maxplayers} '
+                    '(${server.properties.bf2Reservedslots})',
               ),
-              if (!server.properties!.nextMap.isNullOrEmpty)
+              if (!server.properties.nextMap.isNullOrEmpty)
                 CustomDescription(
                   label: 'Next map:',
-                  value: server.properties!.nextMap!,
+                  value: server.properties.nextMap,
                 ),
               Padding(
                 padding: const EdgeInsets.all(8),
@@ -78,23 +77,23 @@ class CustomServerInformation extends StatelessWidget {
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: <Widget>[
                     Flag.fromString(
-                      server.countryFlag!,
+                      server.countryFlag,
                       width: 25,
                       height: 25,
                     ),
                     Tooltip(
-                      message: server.properties!.bf2Os!.contains('linux')
+                      message: server.properties.bf2Os.contains('linux')
                           ? 'Linux server'
                           : 'Windows Server',
                       child: SizedBox(
                         width: 22,
                         height: 22,
                         child: Image.asset(
-                          'assets/images/${server.properties!.bf2Os}',
+                          'assets/images/${server.properties.bf2Os}',
                         ),
                       ),
                     ),
-                    if (server.hasMumble!)
+                    if (server.hasMumble)
                       Tooltip(
                         message: 'Mumble VOIP enabled',
                         child: Container(
@@ -107,7 +106,7 @@ class CustomServerInformation extends StatelessWidget {
                           ),
                         ),
                       ),
-                    if (!server.properties!.bf2DDl.isNullOrEmpty)
+                    if (!server.properties.bf2DDl.isNullOrEmpty)
                       Container(
                         child: IconButton(
                           constraints: BoxConstraints(
@@ -121,7 +120,7 @@ class CustomServerInformation extends StatelessWidget {
                           splashRadius: 1,
                           onPressed: () {
                             launchUrlString(
-                              server.properties!.bf2DDl!,
+                              server.properties.bf2DDl,
                               mode: LaunchMode.externalApplication,
                             );
                           },
@@ -132,17 +131,17 @@ class CustomServerInformation extends StatelessWidget {
               ),
               CustomDescription(
                 label: 'Server Message',
-                value: server.properties!.bf2Sponsortext!.trim(),
+                value: server.properties.bf2Sponsortext.trim(),
                 valueTextAlign: TextAlign.justify,
               ),
-              if (!server.properties!.bf2CommunitylogoUrl.isNullOrEmpty)
+              if (!server.properties.bf2CommunitylogoUrl.isNullOrEmpty)
                 GestureDetector(
                   onTap: () {
-                    launchUrlString(server.properties!.bf2CommunitylogoUrl!);
+                    launchUrlString(server.properties.bf2CommunitylogoUrl);
                   },
                   child: CustomDescription(
                     label: 'Community',
-                    value: server.properties!.bf2CommunitylogoUrl!,
+                    value: server.properties.bf2CommunitylogoUrl,
                   ),
                 ),
             ],

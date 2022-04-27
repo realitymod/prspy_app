@@ -29,13 +29,13 @@ class CustomServerListTileSubtitle extends StatelessWidget {
         Row(
           children: <Widget>[
             Text(
-              '${serverProperties.mapname} - ',
+              '${serverProperties.map.name} - ',
             ),
             Text(
-              '[${serverProperties.gametype} ${serverProperties.bf2Mapsize}]',
+              '[${serverProperties.map.gameType} ${serverProperties.map.layout}]',
             ),
           ],
-        )
+        ),
       ],
     );
   }

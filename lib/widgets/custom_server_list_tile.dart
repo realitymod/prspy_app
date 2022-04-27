@@ -31,7 +31,7 @@ class CustomServerListTile extends StatelessWidget {
         leading: Container(
           height: double.infinity,
           child: Flag.fromString(
-            server.countryFlag!,
+            server.countryFlag,
             width: 17,
             height: 17,
           ),
@@ -40,11 +40,11 @@ class CustomServerListTile extends StatelessWidget {
           fit: BoxFit.scaleDown,
           alignment: Alignment.centerLeft,
           child: Text(
-            server.properties!.hostname.trim(),
+            server.properties.hostname.trim(),
           ),
         ),
         subtitle: CustomServerListTileSubtitle(
-          serverProperties: server.properties!,
+          serverProperties: server.properties,
         ),
         trailing: Icon(
           Icons.chevron_right,

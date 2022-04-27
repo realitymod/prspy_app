@@ -1,35 +1,26 @@
-import 'package:prspy/models/faction.dart';
+import 'package:prspy/models/map_model.dart';
 
 ///
 ///
 ///
 class ServerProperties {
-  String? gamename;
-  String hostname = '';
-  String? gamever;
-  String? mapname;
-  String? gametype;
-  String? gamevariant;
-  String? numplayers;
-  String? maxplayers;
-  String? password;
-  String? timelimit;
-  String? roundtime;
-  String? bf2Os;
-  String? bf2DDl;
-  String? bf2Sponsortext;
-  String? bf2SponsorlogoUrl;
-  String? bf2CommunitylogoUrl;
-  Faction? faction1;
-  Faction? faction2;
-  String? nextMap;
-
-  /// 16 = Infantary
-  /// 32 = Alternative
-  /// 64 = Standard
-  /// 128 = Large
-  String? bf2Mapsize;
-  String? bf2Reservedslots;
+  late String gamename;
+  late String hostname;
+  late String gamever;
+  late String gamevariant;
+  late String numplayers;
+  late String maxplayers;
+  late String password;
+  late String timelimit;
+  late String roundtime;
+  late String bf2Os;
+  late String bf2DDl;
+  late String bf2Sponsortext;
+  late String bf2SponsorlogoUrl;
+  late String bf2CommunitylogoUrl;
+  late String nextMap;
+  late MapModel map;
+  late String bf2Reservedslots;
 
   ///
   ///
@@ -38,8 +29,6 @@ class ServerProperties {
     gamename = json['gamename'];
     hostname = json['hostname'];
     gamever = json['gamever'];
-    mapname = json['mapname'];
-    gametype = json['gametype'];
     gamevariant = json['gamevariant'];
     numplayers = json['numplayers'];
     maxplayers = json['maxplayers'];
@@ -51,38 +40,13 @@ class ServerProperties {
     bf2Sponsortext = json['bf2_sponsortext'];
     bf2SponsorlogoUrl = json['bf2_sponsorlogo_url'];
     bf2CommunitylogoUrl = json['bf2_communitylogo_url'];
-    faction1 = Faction.fromCode(code: json['bf2_team1']);
-    faction2 = Faction.fromCode(code: json['bf2_team2']);
-    bf2Mapsize = json['bf2_mapsize'];
     bf2Reservedslots = json['bf2_reservedslots'];
-
-    gametype = gametype!.split('_').last.toLowerCase();
-
-    if (gametype == 'coop') {
-      gametype = 'Co-Op';
-    } else if (gametype == 'cq') {
-      gametype = 'AAS';
-    }
-
-    // Capitalize the first letter of the gametype
-    gametype =
-        '${gametype!.substring(0, 1).toUpperCase()}${gametype!.substring(1, gametype!.length)}';
+    map = MapModel.fromJson(json);
 
     // Remove the version tag from the begining of the hostname
     hostname = hostname.substring(13);
-    if (bf2Sponsortext!.split('|').length > 0) {
-      nextMap = bf2Sponsortext!.split('|').last.trim().replaceAll('-', '');
-    }
-
-    // Set the correct layout based on map size
-    if (bf2Mapsize == '16') {
-      bf2Mapsize = 'Inf';
-    } else if (bf2Mapsize == '32') {
-      bf2Mapsize = 'Alt';
-    } else if (bf2Mapsize == '64') {
-      bf2Mapsize = 'Std';
-    } else if (bf2Mapsize == '128') {
-      bf2Mapsize = 'Lrg';
+    if (bf2Sponsortext.split('|').length > 0) {
+      nextMap = bf2Sponsortext.split('|').last.trim().replaceAll('-', '');
     }
   }
 }
