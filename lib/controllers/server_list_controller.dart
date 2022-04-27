@@ -59,7 +59,7 @@ class ServerListController {
   void _showHideEmptyServers() {
     if (_config.hideEmptyServers) {
       filteredServers = filteredServers
-          ?.where((Server server) => server.players.isNotEmpty)
+          ?.where((Server server) => server.properties!.numplayers != '0')
           .toList();
     }
   }
