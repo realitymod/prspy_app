@@ -3,7 +3,7 @@ import 'package:marquee/marquee.dart';
 import 'package:prspy/models/player.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/widgets/custom_player_list.dart';
-import 'package:prspy/widgets/custom_server_information.dart';
+import 'package:prspy/widgets/custom_server_information_drawer.dart';
 
 ///
 ///
@@ -38,7 +38,7 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
       length: 2,
       child: Scaffold(
         key: _scaffoldKey,
-        endDrawer: CustomServerInformation(
+        endDrawer: CustomServerInformationDrawer(
           server: widget.server,
         ),
         appBar: AppBar(

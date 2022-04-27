@@ -8,13 +8,13 @@ import 'package:url_launcher/url_launcher_string.dart';
 ///
 ///
 ///
-class CustomServerInformation extends StatelessWidget {
+class CustomServerInformationDrawer extends StatelessWidget {
   final Server server;
 
   ///
   ///
   ///
-  const CustomServerInformation({
+  const CustomServerInformationDrawer({
     required this.server,
     Key? key,
   }) : super(key: key);
@@ -52,12 +52,9 @@ class CustomServerInformation extends StatelessWidget {
                 ),
               CustomDescription(
                 label: 'Map:',
-                value: server.properties.map.name,
-              ),
-              CustomDescription(
-                label: 'Gamemode:',
-                value:
-                    '${server.properties.map.layout} - ${server.properties.map.gameType}',
+                value: '${server.properties.map.name} '
+                    '${server.properties.map.gameType} '
+                    '${server.properties.map.layout}',
               ),
               CustomDescription(
                 label: 'Players:',
