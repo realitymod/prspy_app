@@ -27,6 +27,15 @@ class MapModel {
     faction1 = Faction.fromCode(code: map['bf2_team1']);
     faction2 = Faction.fromCode(code: map['bf2_team2']);
     gameType = map['gametype'];
+    _setMapGalleryUrls();
+    _setCorrectLayout();
+    _setCorrectGameType();
+  }
+
+  ///
+  ///
+  ///
+  void _setMapGalleryUrls() {
     String mapNameNormalized = name.toLowerCase().replaceAll(' ', '').trim();
 
     // Create url for displaying map image in server detail drawer
@@ -35,9 +44,6 @@ class MapModel {
     // Create url to map gallery
     mapGaleryUrl =
         'https://www.realitymod.com/mapgallery/#!/$mapNameNormalized/$gameType/$size';
-    print(mapOverviewUrl);
-    _setCorrectLayout();
-    _setCorrectGameType();
   }
 
   /// 16 = Infantary
