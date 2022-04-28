@@ -20,6 +20,7 @@ class CustomPlayerList extends StatelessWidget {
     return SingleChildScrollView(
       child: DataTable(
         columnSpacing: 25,
+        headingRowColor: MaterialStateProperty.all(Colors.grey.shade800),
         border: TableBorder.symmetric(inside: BorderSide()),
         columns: <DataColumn>[
           DataColumn(
@@ -113,7 +114,61 @@ class CustomPlayerList extends StatelessWidget {
         ),
       );
     }
+    // Add the footer row
+    rows.add(
+      DataRow(
+        color: MaterialStateProperty.all(Colors.grey.shade800),
+        cells: <DataCell>[
+          DataCell(
+            Text('${players.length} Players'),
+          ),
+          DataCell(
+            Text(
+              players
+                  .fold(
+                    0,
+                    (int previousValue, Player element) =>
+                        previousValue += element.score,
+                  )
+                  .toString(),
+            ),
+          ),
+          DataCell(
+            Text(
+              players
+                  .fold(
+                    0,
+                    (int previousValue, Player element) =>
+                        previousValue += element.kills,
+                  )
+                  .toString(),
+            ),
+          ),
+          DataCell(
+            Text(
+              players
+                  .fold(
+                    0,
+                    (int previousValue, Player element) =>
+                        previousValue += element.deaths,
+                  )
+                  .toString(),
+            ),
+          ),
+          DataCell(
+            Text(_calculateAveragePing().toInt().toString()),
+          ),
+        ],
+      ),
+    );
     return rows;
+  }
+
+  ///
+  ///
+  ///
+  double _calculateAveragePing() {
+    return players.map((m) => m.ping).reduce((a, b) => a + b) / players.length;
   }
 
   ///
