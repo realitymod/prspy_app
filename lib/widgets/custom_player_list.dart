@@ -23,6 +23,7 @@ class CustomPlayerList extends StatelessWidget {
     return SingleChildScrollView(
       child: DataTable(
         columnSpacing: 25,
+        showBottomBorder: true,
         headingRowColor: MaterialStateProperty.all(Colors.grey.shade800),
         border: TableBorder.symmetric(inside: BorderSide()),
         columns: <DataColumn>[
