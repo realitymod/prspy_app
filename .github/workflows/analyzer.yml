@@ -1,0 +1,10 @@
+name: Flutter action
+on: push
+jobs:
+  analyze:
+    name: 'Run flutter analyzer'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: subosito/flutter-action@v2.4.0
+      - run: flutter pub get
+      - run: flutter analyze
