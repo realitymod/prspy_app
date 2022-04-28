@@ -114,6 +114,19 @@ class CustomServerInformationDrawer extends StatelessWidget {
                         ),
                       ),
                     ),
+                    if (server.properties.password == 1)
+                      Tooltip(
+                        message: 'Passworded',
+                        child: Container(
+                          constraints: BoxConstraints(
+                            maxWidth: 25,
+                            maxHeight: 25,
+                          ),
+                          child: Icon(
+                            Icons.lock,
+                          ),
+                        ),
+                      ),
                     if (server.hasMumble)
                       Tooltip(
                         message: 'Mumble VOIP enabled',
