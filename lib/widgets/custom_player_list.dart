@@ -17,6 +17,9 @@ class CustomPlayerList extends StatelessWidget {
   ///
   @override
   Widget build(BuildContext context) {
+    if (players.isEmpty) {
+      return Center(child: Text('0 Players'));
+    }
     return SingleChildScrollView(
       child: DataTable(
         columnSpacing: 25,
@@ -168,7 +171,8 @@ class CustomPlayerList extends StatelessWidget {
   ///
   ///
   double _calculateAveragePing() {
-    return players.map((m) => m.ping).reduce((a, b) => a + b) / players.length;
+    return players.map((Player m) => m.ping).reduce((int a, int b) => a + b) /
+        players.length;
   }
 
   ///
