@@ -43,7 +43,7 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
         ),
         appBar: AppBar(
           leadingWidth: 30,
-          leading: BackButton(),
+          leading: const BackButton(),
           title: SizedBox(
             height: AppBar().preferredSize.height,
             child: Marquee(
@@ -64,7 +64,7 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.info),
+              icon: const Icon(Icons.info),
               onPressed: () {
                 _scaffoldKey.currentState!.openEndDrawer();
               },

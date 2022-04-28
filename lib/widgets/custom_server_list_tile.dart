@@ -46,7 +46,7 @@ class CustomServerListTile extends StatelessWidget {
         subtitle: CustomServerListTileSubtitle(
           serverProperties: server.properties,
         ),
-        trailing: Icon(
+        trailing: const Icon(
           Icons.chevron_right,
           color: Colors.white,
         ),

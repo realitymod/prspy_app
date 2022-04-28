@@ -18,14 +18,14 @@ class CustomPlayerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (players.isEmpty) {
-      return Center(child: Text('0 Players'));
+      return const Center(child: Text('0 Players'));
     }
     return SingleChildScrollView(
       child: DataTable(
         columnSpacing: 25,
         showBottomBorder: true,
         headingRowColor: MaterialStateProperty.all(Colors.grey.shade800),
-        border: TableBorder.symmetric(inside: BorderSide()),
+        border: TableBorder.symmetric(inside: const BorderSide()),
         columns: <DataColumn>[
           DataColumn(
             label: Text(
@@ -179,5 +179,5 @@ class CustomPlayerList extends StatelessWidget {
   ///
   ///
   ///
-  TextStyle get _headerTextStyle => TextStyle(fontWeight: FontWeight.bold);
+  TextStyle get _headerTextStyle => const TextStyle(fontWeight: FontWeight.bold);
 }

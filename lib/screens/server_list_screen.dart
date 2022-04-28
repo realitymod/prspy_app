@@ -52,10 +52,10 @@ class _ServerListScreenState extends State<ServerListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PRSPY'),
+        title: const Text('PRSPY'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh),
             onPressed: () {
               _controller.fetchServers(consumer: widget.serverInfoConsumer);
             },

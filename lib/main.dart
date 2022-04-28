@@ -9,7 +9,7 @@ import 'package:prspy/screens/server_list_screen.dart';
 ///
 ///
 ///
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// The code below gives the application updated CA certificates.

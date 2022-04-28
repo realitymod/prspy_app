@@ -36,13 +36,13 @@ class CustomServerInformationDrawer extends StatelessWidget {
                 child: Text(
                   server.properties.hostname.trim(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 2,
               ),
               if (!server.properties.bf2SponsorlogoUrl.isNullOrEmpty)
@@ -118,11 +118,11 @@ class CustomServerInformationDrawer extends StatelessWidget {
                       Tooltip(
                         message: 'Passworded',
                         child: Container(
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             maxWidth: 25,
                             maxHeight: 25,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.lock,
                           ),
                         ),
@@ -131,11 +131,11 @@ class CustomServerInformationDrawer extends StatelessWidget {
                       Tooltip(
                         message: 'Mumble VOIP enabled',
                         child: Container(
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             maxWidth: 25,
                             maxHeight: 25,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.headset,
                           ),
                         ),
@@ -143,14 +143,14 @@ class CustomServerInformationDrawer extends StatelessWidget {
                     if (!server.properties.bf2DDl.isNullOrEmpty)
                       Container(
                         child: IconButton(
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             maxWidth: 25,
                             maxHeight: 25,
                           ),
                           tooltip:
                               'BattleRecorder Enabled, click to visit BR Downloads page',
                           padding: EdgeInsets.zero,
-                          icon: Icon(Icons.play_arrow_sharp),
+                          icon: const Icon(Icons.play_arrow_sharp),
                           splashRadius: 1,
                           onPressed: () {
                             launchUrlString(

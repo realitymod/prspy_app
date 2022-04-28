@@ -22,7 +22,7 @@ class CustomFilterOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
-      icon: Icon(Icons.filter_list_alt),
+      icon: const Icon(Icons.filter_list_alt),
       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
         PopupMenuItem<String>(
           child: Text(

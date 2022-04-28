@@ -64,7 +64,11 @@ linter:
     use_raw_strings: true
     use_string_buffers: true
     constant_identifier_names: false
-
+    # https://stackoverflow.com/questions/53492705/does-using-const-in-the-widget-tree-improve-performance
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    prefer_const_literals_to_create_immutables: true
+    unnecessary_const: true
 
 # https://dart.dev/guides/language/analysis-options
 
@@ -111,7 +115,8 @@ dart_code_metrics:
     - avoid-collection-methods-with-unrelated-types
     - prefer-async-await
     - prefer-immediate-return
+    - prefer-trailing-comma
     - prefer-match-file-name:
         exclude:
           - test/**
-    - prefer-trailing-comma
+          - lib/main.dart

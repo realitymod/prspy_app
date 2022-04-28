@@ -28,7 +28,7 @@ class CustomDescription extends StatelessWidget {
       children: <Widget>[
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.blueAccent,
           ),
         ),
@@ -37,7 +37,7 @@ class CustomDescription extends StatelessWidget {
           child: Text(
             value,
             textAlign: valueTextAlign,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
             ),
           ),
