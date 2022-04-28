@@ -55,10 +55,22 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
-                child: Text(widget.server.properties.map.faction2.name),
+                child: Text(
+                  widget.server.properties.map.faction2.name,
+                  style: const TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               Tab(
-                child: Text(widget.server.properties.map.faction1.name),
+                child: Text(
+                  widget.server.properties.map.faction1.name,
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),
