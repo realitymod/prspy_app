@@ -45,14 +45,14 @@ class CustomServerInformationDrawer extends StatelessWidget {
               const Divider(
                 thickness: 2,
               ),
-              if (!server.properties.bf2SponsorlogoUrl.isNullOrEmpty)
+              if (!server.properties.sponsorlogoUrl.isNullOrEmpty)
                 GestureDetector(
                   onTap: () {
-                    launchUrlString(server.properties.bf2CommunitylogoUrl);
+                    launchUrlString(server.properties.communitylogoUrl);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: Image.network(server.properties.bf2SponsorlogoUrl),
+                    child: Image.network(server.properties.sponsorlogoUrl),
                   ),
                 ),
               CustomDescription(
@@ -65,7 +65,7 @@ class CustomServerInformationDrawer extends StatelessWidget {
                 label: 'Players:',
                 value:
                     '${server.properties.numplayers}/${server.properties.maxplayers} '
-                    '(${server.properties.bf2Reservedslots})',
+                    '(${server.properties.reservedSlots})',
               ),
               if (!server.properties.nextMap.isNullOrEmpty)
                 CustomDescription(
@@ -78,17 +78,17 @@ class CustomServerInformationDrawer extends StatelessWidget {
               ),
               CustomDescription(
                 label: 'Server Message',
-                value: server.properties.bf2Sponsortext.trim(),
+                value: server.properties.sponsortext.trim(),
                 valueTextAlign: TextAlign.justify,
               ),
-              if (!server.properties.bf2CommunitylogoUrl.isNullOrEmpty)
+              if (!server.properties.communitylogoUrl.isNullOrEmpty)
                 GestureDetector(
                   onTap: () {
-                    launchUrlString(server.properties.bf2CommunitylogoUrl);
+                    launchUrlString(server.properties.communitylogoUrl);
                   },
                   child: CustomDescription(
                     label: 'Community',
-                    value: server.properties.bf2CommunitylogoUrl,
+                    value: server.properties.communitylogoUrl,
                   ),
                 ),
               Padding(
@@ -103,14 +103,15 @@ class CustomServerInformationDrawer extends StatelessWidget {
                       height: 25,
                     ),
                     Tooltip(
-                      message: server.properties.bf2Os.contains('linux')
-                          ? 'Linux server'
-                          : 'Windows Server',
+                      message:
+                          server.properties.operatingSystem.contains('linux')
+                              ? 'Linux server'
+                              : 'Windows Server',
                       child: SizedBox(
                         width: 22,
                         height: 22,
                         child: Image.asset(
-                          'assets/images/${server.properties.bf2Os}',
+                          'assets/images/${server.properties.operatingSystem}',
                         ),
                       ),
                     ),
@@ -140,7 +141,7 @@ class CustomServerInformationDrawer extends StatelessWidget {
                           ),
                         ),
                       ),
-                    if (!server.properties.bf2DDl.isNullOrEmpty)
+                    if (!server.properties.battleRecordUrl.isNullOrEmpty)
                       Container(
                         child: IconButton(
                           constraints: const BoxConstraints(
@@ -154,7 +155,7 @@ class CustomServerInformationDrawer extends StatelessWidget {
                           splashRadius: 1,
                           onPressed: () {
                             launchUrlString(
-                              server.properties.bf2DDl,
+                              server.properties.battleRecordUrl,
                               mode: LaunchMode.externalApplication,
                             );
                           },
