@@ -5,6 +5,7 @@ import 'package:prspy/enums/fetch_status.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/screens/server_detail_screen.dart';
 import 'package:prspy/widgets/custom_filter_options.dart';
+import 'package:prspy/widgets/custom_main_drawer.dart';
 import 'package:prspy/widgets/custom_server_list_tile.dart';
 
 ///
@@ -51,6 +52,7 @@ class _ServerListScreenState extends State<ServerListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const CustomMainDrawer(),
       appBar: AppBar(
         title: const Text('PRSPY'),
         actions: <Widget>[
