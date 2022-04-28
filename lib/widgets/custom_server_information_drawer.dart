@@ -1,5 +1,4 @@
 import 'package:flag/flag_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/nullable_string_helper.dart';
