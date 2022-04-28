@@ -11,8 +11,8 @@ import 'package:prspy/models/server.dart';
 ///
 class ServerListController {
   final BuildContext context;
-  List<Server>? filteredServers;
-  List<Server>? _servers;
+  List<Server> filteredServers = <Server>[];
+  List<Server> _servers = <Server>[];
   final Config _config = Config();
   final ValueNotifier<FetchStatus> fetchStatus = ValueNotifier<FetchStatus>(
     FetchStatus.fetching,
@@ -32,12 +32,16 @@ class ServerListController {
     try {
       fetchStatus.value = FetchStatus.fetching;
       _servers = await consumer.fetchServerList();
+      _servers.sort(
+        (Server a, Server b) =>
+            b.properties.numplayers.compareTo(a.properties.numplayers),
+      );
       filteredServers = _servers;
       fetchStatus.value = FetchStatus.fetched;
     } catch (err, stack) {
       log(err.toString());
       log(stack.toString());
-      if (filteredServers != null) {
+      if (filteredServers.isNotEmpty) {
         fetchStatus.value = FetchStatus.fetched;
       } else {
         fetchStatus.value = FetchStatus.error;
@@ -63,7 +67,7 @@ class ServerListController {
   void _showHideEmptyServers() {
     if (_config.hideEmptyServers) {
       filteredServers = filteredServers
-          ?.where((Server server) => server.properties.numplayers != '0')
+          .where((Server server) => server.properties.numplayers != 0)
           .toList();
     }
   }
@@ -74,7 +78,7 @@ class ServerListController {
   void _showHidePasswordedServers() {
     if (_config.hidePasswordedServers) {
       filteredServers = filteredServers
-          ?.where((Server server) => server.properties.password == '0')
+          .where((Server server) => server.properties.password == 0)
           .toList();
     }
   }
@@ -85,7 +89,7 @@ class ServerListController {
   void _showHideCoopServers() {
     if (_config.hideCoopServers) {
       filteredServers = filteredServers
-          ?.where((Server server) => server.properties.map.gameType != 'Co-Op')
+          .where((Server server) => server.properties.map.gameType != 'Co-Op')
           .toList();
     }
   }

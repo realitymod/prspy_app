@@ -73,9 +73,9 @@ class _ServerListScreenState extends State<ServerListScreen> {
               return _fetchingServers();
             case FetchStatus.fetched:
               return ListView.builder(
-                itemCount: _controller.filteredServers!.length,
+                itemCount: _controller.filteredServers.length,
                 itemBuilder: (BuildContext context, int index) {
-                  Server server = _controller.filteredServers!.elementAt(index);
+                  Server server = _controller.filteredServers.elementAt(index);
                   return CustomServerListTile(
                     server: server,
                     onTap: () {

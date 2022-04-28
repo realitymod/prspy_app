@@ -18,7 +18,7 @@ class ServerInfoConsumer {
   ///
   ///
   ///
-  Future<List<Server>?> fetchServerList() async {
+  Future<List<Server>> fetchServerList() async {
     // Response response = await _client.get(
     //   Uri.https('servers.realitymod.com', 'api/ServerInfo'),
     // );

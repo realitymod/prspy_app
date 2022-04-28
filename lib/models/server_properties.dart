@@ -9,9 +9,9 @@ class ServerProperties {
   late String gamever;
   late String serverVersion;
   late String gamevariant;
-  late String numplayers;
-  late String maxplayers;
-  late String password;
+  late int numplayers;
+  late int maxplayers;
+  late int password;
   late String timelimit;
   late String roundtime;
   late String bf2Os;
@@ -31,9 +31,9 @@ class ServerProperties {
     hostname = json['hostname'];
     gamever = json['gamever'];
     gamevariant = json['gamevariant'];
-    numplayers = json['numplayers'];
-    maxplayers = json['maxplayers'];
-    password = json['password'];
+    numplayers = int.parse(json['numplayers']);
+    maxplayers = int.parse(json['maxplayers']);
+    password = int.parse(json['password']);
     timelimit = json['timelimit'];
     roundtime = json['roundtime'];
     bf2Os = '${json['bf2_os']}.png';
