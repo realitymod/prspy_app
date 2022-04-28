@@ -10,6 +10,8 @@ class MapModel {
   late Faction faction1;
   late Faction faction2;
   late String gameType;
+  late String mapOverviewUrl;
+  late String mapGaleryUrl;
 
   ///
   ///
@@ -25,6 +27,15 @@ class MapModel {
     faction1 = Faction.fromCode(code: map['bf2_team1']);
     faction2 = Faction.fromCode(code: map['bf2_team2']);
     gameType = map['gametype'];
+    String mapNameNormalized = name.toLowerCase().replaceAll(' ', '').trim();
+
+    // Create url for displaying map image in server detail drawer
+    mapOverviewUrl = 'https://www.realitymod.com/mapgallery/images/maps/'
+        '$mapNameNormalized/mapoverview_${gameType}_${size}.jpg';
+    // Create url to map gallery
+    mapGaleryUrl =
+        'https://www.realitymod.com/mapgallery/#!/$mapNameNormalized/$gameType/$size';
+    print(mapOverviewUrl);
     _setCorrectLayout();
     _setCorrectGameType();
   }
