@@ -46,9 +46,14 @@ class CustomServerInformationDrawer extends StatelessWidget {
                 thickness: 2,
               ),
               if (!server.properties.bf2SponsorlogoUrl.isNullOrEmpty)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Image.network(server.properties.bf2SponsorlogoUrl),
+                GestureDetector(
+                  onTap: () {
+                    launchUrlString(server.properties.bf2CommunitylogoUrl);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Image.network(server.properties.bf2SponsorlogoUrl),
+                  ),
                 ),
               CustomDescription(
                 label: 'Map:',
