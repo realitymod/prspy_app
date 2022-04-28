@@ -67,6 +67,25 @@ class CustomServerInformationDrawer extends StatelessWidget {
                   label: 'Next map:',
                   value: server.properties.nextMap,
                 ),
+              CustomDescription(
+                label: 'Server version:',
+                value: server.properties.serverVersion,
+              ),
+              CustomDescription(
+                label: 'Server Message',
+                value: server.properties.bf2Sponsortext.trim(),
+                valueTextAlign: TextAlign.justify,
+              ),
+              if (!server.properties.bf2CommunitylogoUrl.isNullOrEmpty)
+                GestureDetector(
+                  onTap: () {
+                    launchUrlString(server.properties.bf2CommunitylogoUrl);
+                  },
+                  child: CustomDescription(
+                    label: 'Community',
+                    value: server.properties.bf2CommunitylogoUrl,
+                  ),
+                ),
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: Wrap(
@@ -126,21 +145,6 @@ class CustomServerInformationDrawer extends StatelessWidget {
                   ],
                 ),
               ),
-              CustomDescription(
-                label: 'Server Message',
-                value: server.properties.bf2Sponsortext.trim(),
-                valueTextAlign: TextAlign.justify,
-              ),
-              if (!server.properties.bf2CommunitylogoUrl.isNullOrEmpty)
-                GestureDetector(
-                  onTap: () {
-                    launchUrlString(server.properties.bf2CommunitylogoUrl);
-                  },
-                  child: CustomDescription(
-                    label: 'Community',
-                    value: server.properties.bf2CommunitylogoUrl,
-                  ),
-                ),
             ],
           ),
         ),

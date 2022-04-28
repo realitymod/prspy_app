@@ -7,6 +7,7 @@ class ServerProperties {
   late String gamename;
   late String hostname;
   late String gamever;
+  late String serverVersion;
   late String gamevariant;
   late String numplayers;
   late String maxplayers;
@@ -43,8 +44,11 @@ class ServerProperties {
     bf2Reservedslots = json['bf2_reservedslots'];
     map = MapModel.fromJson(json);
 
-    // Remove the version tag from the begining of the hostname
-    hostname = hostname.substring(13);
+    // Get the server version from hostname
+    serverVersion = hostname.substring(4, hostname.indexOf(']'));
+    // Remove the version from hostname
+    hostname = hostname.substring(hostname.indexOf(']') + 1);
+
     if (bf2Sponsortext.split('|').length > 0) {
       nextMap = bf2Sponsortext.split('|').last.trim().replaceAll('-', '');
 
@@ -62,5 +66,7 @@ class ServerProperties {
       ///with a text indicating what the next map is, the line below corrects that.
       nextMap = nextMap.replaceAll('Next map:', '').trim();
     }
+    bf2Sponsortext =
+        bf2Sponsortext.replaceAll('-', '').replaceAll('|', '\n').trim();
   }
 }
