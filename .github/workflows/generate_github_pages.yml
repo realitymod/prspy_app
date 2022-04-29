@@ -11,7 +11,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.5'
-      - run: flutter build web
+      - run: flutter build web --base-href "/prspy/"
       - uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: gh-pages
