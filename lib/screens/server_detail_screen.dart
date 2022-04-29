@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 import 'package:prspy/models/player.dart';
@@ -45,12 +46,16 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           leadingWidth: 30,
           leading: const BackButton(),
           title: SizedBox(
-            height: AppBar().preferredSize.height,
-            child: Marquee(
-              text: widget.server.properties.hostname,
-              blankSpace: 150,
-              numberOfRounds: 1,
-            ),
+            height: !kIsWeb ? AppBar().preferredSize.height : null,
+            child: !kIsWeb
+                ? Marquee(
+                    text: widget.server.properties.hostname,
+                    blankSpace: 150,
+                    numberOfRounds: 1,
+                  )
+                : Text(
+                    widget.server.properties.hostname,
+                  ),
           ),
           bottom: TabBar(
             tabs: <Widget>[
