@@ -1,4 +1,4 @@
-name: Flutter action
+name: Default Pipeline
 on: push
 jobs:
   Analyzer:
@@ -42,7 +42,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.5'
-      - run: flutter build web --base-href "/prspy/"
+      - run: flutter build web --base-href "/prspy/" --web-renderer html
   Deploy:
     name: 'Deploy to Github Pages'
     needs:
