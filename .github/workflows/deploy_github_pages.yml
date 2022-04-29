@@ -2,20 +2,17 @@ name: Deploy to Github Pages
 on: push
 jobs:
   Build:
-    name: 'Build'
+    name: 'Build and Deploy GH'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
+      - name: 'Build web version'
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.5'
-      - run: flutter build web
-  Deploy:
-    name: 'Deploy Github Webpages'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          branch: gh-pages
-          folder: build
+        run: flutter build web
+     - name: 'Deploy to Github Pages'
+       uses: JamesIves/github-pages-deploy-action@v4.3.3
+       with:
+         branch: gh-pages
+         folder: build/web
