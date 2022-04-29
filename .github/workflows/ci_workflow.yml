@@ -29,3 +29,27 @@ jobs:
           flutter-version: '2.10.5'
       - run: flutter pub get
       - run: flutter test
+  Build:
+    name: 'Build'
+    needs:
+      - Analyzer
+      - Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+      - name: 'Build web version'
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.5'
+      - run: flutter build web --base-href "/prspy/"
+  Deploy:
+    name: 'Deploy to Github Pages'
+    needs:
+      - Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: build/web
