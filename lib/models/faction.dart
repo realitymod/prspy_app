@@ -10,7 +10,9 @@ class Faction {
   ///
   ///
   ///
-  Faction({required this.code, required this.name});
+  Faction({required this.code, required this.name}) {
+    flag = '$code.png';
+  }
 
   ///
   ///
