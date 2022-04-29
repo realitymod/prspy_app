@@ -111,7 +111,7 @@ dart_code_metrics:
     - no-object-declaration
     - prefer-first
     - prefer-last
-    - avoid-dynamic
+#    - avoid-dynamic
     - avoid-collection-methods-with-unrelated-types
     - prefer-async-await
     - prefer-immediate-return
