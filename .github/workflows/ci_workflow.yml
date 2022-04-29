@@ -43,6 +43,11 @@ jobs:
         with:
           flutter-version: '2.10.5'
       - run: flutter build web --base-href "/prspy/" --web-renderer html
+      - name: Cache Build Files for Deploy
+        uses: actions/cache@v3
+        with:
+          path: build/web
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
   Deploy:
     name: 'Deploy to Github Pages'
     needs:
