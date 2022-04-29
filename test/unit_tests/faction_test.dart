@@ -204,6 +204,15 @@ void main() {
   ///
   ///
   ///
+  test('Create African Resistance Fighters Faction object using its code', () {
+    Faction faction = Faction.fromCode(code: 'arf');
+    expect(faction.name, 'African Resistance Fighters');
+    expect(faction.code, 'arf');
+  });
+
+  ///
+  ///
+  ///
   test('Create Unknown Faction Faction object using its code', () {
     Faction faction = Faction.fromCode(code: '');
     expect(faction.name, 'Unknown Faction');

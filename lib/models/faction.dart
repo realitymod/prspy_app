@@ -58,6 +58,8 @@ class Faction {
       team = Faction(code: code, name: 'Syrian Rebels');
     } else if (code == 'fr') {
       team = Faction(code: code, name: 'French Forces');
+    } else if (code == 'arf') {
+      return Faction(code: code, name: 'African Resistance Fighters');
     } else {
       team = Faction(code: code, name: 'Unknown Faction');
     }
