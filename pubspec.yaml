@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   # https://pub.dev/packages/http
   http: 0.13.4
   # https://pub.dev/packages/flag

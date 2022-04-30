@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
 import 'package:prspy/screens/server_list_screen.dart';
@@ -49,6 +50,20 @@ class MyApp extends StatelessWidget {
           client: Client(),
         ),
       ),
+      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+      ],
+      supportedLocales: const <Locale>[
+        Locale('pt', 'BR'),
+        Locale('es', ''),
+        Locale('fr', ''),
+        Locale('en', ''),
+        Locale('ch', ''),
+        Locale('jp', ''),
+        Locale('ru', ''),
+      ],
     );
   }
 }
