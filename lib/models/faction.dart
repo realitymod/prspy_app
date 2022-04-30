@@ -67,4 +67,11 @@ class Faction {
     }
     return team;
   }
+
+  ///
+  ///
+  ///
+  String get flagAsset {
+    return 'assets/images/faction_flags/$flag';
+  }
 }

@@ -60,21 +60,41 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
-                child: Text(
-                  widget.server.properties.map.faction2.name,
-                  style: const TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      widget.server.properties.map.faction2.flagAsset,
+                      width: 25,
+                    ),
+                    Text(
+                      widget.server.properties.map.faction2.name,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Tab(
-                child: Text(
-                  widget.server.properties.map.faction1.name,
-                  style: const TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      widget.server.properties.map.faction1.flagAsset,
+                      width: 25,
+                    ),
+                    Text(
+                      widget.server.properties.map.faction1.name,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
