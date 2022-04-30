@@ -28,152 +28,21 @@ class _CustomPlayerListState extends State<CustomPlayerList>
     if (widget.players.isEmpty) {
       return const Center(child: Text('0 Players'));
     }
-    return SingleChildScrollView(
-      child: DataTable(
-        columnSpacing: 25,
-        showBottomBorder: true,
-        headingRowColor: MaterialStateProperty.all(Colors.grey.shade800),
-        border: TableBorder.symmetric(inside: const BorderSide()),
-        columns: <DataColumn>[
-          DataColumn(
-            label: Text(
-              'Player Name',
-              style: _headerTextStyle,
-            ),
-          ),
-          DataColumn(
-            label: Expanded(
-              child: Text(
-                'S',
-                textAlign: TextAlign.center,
-                style: _headerTextStyle,
-              ),
-            ),
-            numeric: true,
-            tooltip: 'Score',
-          ),
-          DataColumn(
-            label: Expanded(
-              child: Text(
-                'K',
-                style: _headerTextStyle,
-              ),
-            ),
-            numeric: true,
-            tooltip: 'Kills',
-          ),
-          DataColumn(
-            label: Expanded(
-              child: Text(
-                'D',
-                textAlign: TextAlign.center,
-                style: _headerTextStyle,
-              ),
-            ),
-            numeric: true,
-            tooltip: 'Deaths',
-          ),
-          DataColumn(
-            label: Expanded(
-              child: Text(
-                'P',
-                textAlign: TextAlign.center,
-                style: _headerTextStyle,
-              ),
-            ),
-            numeric: true,
-            tooltip: 'Ping',
-          ),
-        ],
-        rows: _createPlayerRows(),
+    return ListView.separated(
+      itemCount: widget.players.length + 2,
+      separatorBuilder: (BuildContext context, int index) => const Divider(
+        color: Colors.white,
       ),
+      itemBuilder: (BuildContext context, int index) {
+        if (index == 0) {
+          return _playerListTileHeader();
+        } else if (index == widget.players.length + 1) {
+          return _playerListTileFooter();
+        } else {
+          return _playerListTile(widget.players.elementAt(index - 1));
+        }
+      },
     );
-  }
-
-  ///
-  ///
-  ///
-  List<DataRow> _createPlayerRows() {
-    List<DataRow> rows = <DataRow>[];
-    for (Player player in widget.players) {
-      rows.add(
-        DataRow(
-          cells: <DataCell>[
-            DataCell(
-              Text(player.playerName),
-            ),
-            DataCell(
-              Text(
-                player.score.toString(),
-              ),
-            ),
-            DataCell(
-              Text(
-                player.kills.toString(),
-              ),
-            ),
-            DataCell(
-              Text(
-                player.deaths.toString(),
-              ),
-            ),
-            DataCell(
-              Text(
-                player.ping.toString(),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-    // Add the footer row
-    rows.add(
-      DataRow(
-        color: MaterialStateProperty.all(Colors.grey.shade800),
-        cells: <DataCell>[
-          DataCell(
-            Text('${widget.players.length} Players'),
-          ),
-          DataCell(
-            Text(
-              widget.players
-                  .fold(
-                    0,
-                    (int previousValue, Player element) =>
-                        previousValue += element.score,
-                  )
-                  .toString(),
-            ),
-          ),
-          DataCell(
-            Text(
-              widget.players
-                  .fold(
-                    0,
-                    (int previousValue, Player element) =>
-                        previousValue += element.kills,
-                  )
-                  .toString(),
-            ),
-          ),
-          DataCell(
-            Text(
-              widget.players
-                  .fold(
-                    0,
-                    (int previousValue, Player element) =>
-                        previousValue += element.deaths,
-                  )
-                  .toString(),
-            ),
-          ),
-          DataCell(
-            Text(_calculateAveragePing().toInt().toString()),
-          ),
-        ],
-      ),
-    );
-    return rows;
   }
 
   ///
@@ -189,12 +58,150 @@ class _CustomPlayerListState extends State<CustomPlayerList>
   ///
   ///
   ///
-  TextStyle get _headerTextStyle =>
-      const TextStyle(fontWeight: FontWeight.bold);
+  int get _calculateTotalScore {
+    return widget.players.fold(
+      0,
+      (int previousValue, Player element) => previousValue += element.score,
+    );
+  }
+
+  ///
+  ///
+  ///
+  int get _calculateTotalKills {
+    return widget.players.fold(
+      0,
+      (int previousValue, Player element) => previousValue += element.kills,
+    );
+  }
+
+  ///
+  ///
+  ///
+  int get _calculateTotalDeaths {
+    return widget.players.fold(
+      0,
+      (int previousValue, Player element) => previousValue += element.deaths,
+    );
+  }
 
   ///
   ///
   ///
   @override
   bool get wantKeepAlive => true;
+
+  ///
+  ///
+  ///
+  Widget _playerListTileHeader() {
+    return ListTile(
+      title: const SelectableText('Player name'),
+      trailing: Wrap(
+        children: const <Widget>[
+          SizedBox(
+            width: 50,
+            child: SelectableText('Score'),
+          ),
+          SizedBox(
+            width: 43,
+            child: SelectableText('Kills'),
+          ),
+          SizedBox(
+            width: 50,
+            child: SelectableText('Deaths'),
+          ),
+          SizedBox(
+            width: 50,
+            child: SelectableText('Ping'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  ///
+  ///
+  ///
+  Widget _playerListTile(Player player) {
+    return ListTile(
+      title: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: SelectableText(player.playerName),
+      ),
+      trailing: Wrap(
+        children: <Widget>[
+          SizedBox(
+            width: 50,
+            child: SelectableText(
+              '${player.score}',
+              textAlign: TextAlign.start,
+            ),
+          ),
+          SizedBox(
+            width: 43,
+            child: SelectableText(
+              '${player.kills}',
+              textAlign: TextAlign.start,
+            ),
+          ),
+          SizedBox(
+            width: 43,
+            child: SelectableText(
+              '${player.deaths}',
+              textAlign: TextAlign.start,
+            ),
+          ),
+          SizedBox(
+            width: 50,
+            child: SelectableText(
+              '${player.ping}',
+              textAlign: TextAlign.start,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  ///
+  ///
+  ///
+  Widget _playerListTileFooter() {
+    return ListTile(
+      title: SelectableText('Players: ${widget.players.length}'),
+      trailing: Wrap(
+        children: <Widget>[
+          SizedBox(
+            width: 60,
+            child: SelectableText(_calculateTotalScore.toString()),
+          ),
+          SizedBox(
+            width: 43,
+            child: SelectableText(_calculateTotalKills.toString()),
+          ),
+          SizedBox(
+            width: 50,
+            child: SelectableText(_calculateTotalDeaths.toString()),
+          ),
+          SizedBox(
+            width: 50,
+            child: SelectableText(
+              _calculateAveragePing().toInt().toString(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  ///
+  ///
+  ///
+  @override
+  void dispose() {
+    print('deu dispose');
+    super.dispose();
+  }
 }
