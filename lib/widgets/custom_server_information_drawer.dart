@@ -47,21 +47,30 @@ class CustomServerInformationDrawer extends StatelessWidget {
                   thickness: 2,
                 ),
                 if (!server.properties.sponsorlogoUrl.isNullOrEmpty)
-                  GestureDetector(
-                    onTap: () {
-                      launchUrlString(server.properties.communitylogoUrl);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Image.network(server.properties.sponsorlogoUrl),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {
+                        launchUrlString(server.properties.communitylogoUrl);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Image.network(server.properties.sponsorlogoUrl),
+                      ),
                     ),
                   ),
-                GestureDetector(
-                  onTap: () {
-                    launchUrlString(server.properties.map.mapGaleryUrl);
-                  },
-                  child: Image.network(
-                    server.properties.map.mapOverviewUrl,
+                Tooltip(
+                  message: 'Click to open Map Gallery',
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {
+                        launchUrlString(server.properties.map.mapGaleryUrl);
+                      },
+                      child: Image.network(
+                        server.properties.map.mapOverviewUrl,
+                      ),
+                    ),
                   ),
                 ),
                 CustomDescription(
