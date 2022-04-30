@@ -49,7 +49,7 @@ class TestJsons {
   static List<Map<String, dynamic>> get playersJson {
     return <Map<String, dynamic>>[
       <String, dynamic>{
-        'name': 'Player 1',
+        'name': '=CLAM= Player_1',
         'score': 379,
         'kills': 0,
         'deaths': 0,
@@ -58,7 +58,7 @@ class TestJsons {
         'isAI': 0,
       },
       <String, dynamic>{
-        'name': 'Player 2',
+        'name': '=CLAM= Player_2',
         'score': 184,
         'kills': 0,
         'deaths': 2,
@@ -67,7 +67,7 @@ class TestJsons {
         'isAI': 0,
       },
       <String, dynamic>{
-        'name': 'Player 3',
+        'name': '=CLAM= Player_3',
         'score': 0,
         'kills': 0,
         'deaths': 0,
@@ -76,7 +76,7 @@ class TestJsons {
         'isAI': 0,
       },
       <String, dynamic>{
-        'name': 'Player 4',
+        'name': '=CLAM= Player_4',
         'score': 65,
         'kills': 1,
         'deaths': 4,
