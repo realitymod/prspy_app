@@ -92,7 +92,7 @@ class CustomPlayerList extends StatelessWidget {
         DataRow(
           cells: <DataCell>[
             DataCell(
-              Text(player.name),
+              Text(player.playerName),
             ),
             DataCell(
               Text(
@@ -179,5 +179,6 @@ class CustomPlayerList extends StatelessWidget {
   ///
   ///
   ///
-  TextStyle get _headerTextStyle => const TextStyle(fontWeight: FontWeight.bold);
+  TextStyle get _headerTextStyle =>
+      const TextStyle(fontWeight: FontWeight.bold);
 }

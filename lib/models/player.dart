@@ -9,6 +9,7 @@ class Player {
   int? team;
   late int ping;
   late bool isAi;
+  String? clam;
 
   ///
   ///
@@ -34,5 +35,20 @@ class Player {
     team = json['team'];
     ping = json['ping'] ?? 0;
     isAi = json['isAi'] == 1;
+    List<String> playerNameAndClam = name.split(' ');
+    if (playerNameAndClam.length > 1 && playerNameAndClam.first.isNotEmpty) {
+      clam = playerNameAndClam.first.trim();
+      name = playerNameAndClam.last;
+    }
+    name = name.trim();
+  }
+
+  ///
+  ///
+  ///
+  String get playerName {
+    String name = clam ?? '';
+    name += ' ${this.name}';
+    return name.trim();
   }
 }
