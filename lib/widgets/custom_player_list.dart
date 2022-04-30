@@ -4,7 +4,7 @@ import 'package:prspy/models/player.dart';
 ///
 ///
 ///
-class CustomPlayerList extends StatelessWidget {
+class CustomPlayerList extends StatefulWidget {
   final List<Player> players;
 
   ///
@@ -12,12 +12,20 @@ class CustomPlayerList extends StatelessWidget {
   ///
   const CustomPlayerList({required this.players, Key? key}) : super(key: key);
 
+  @override
+  State<CustomPlayerList> createState() => _CustomPlayerListState();
+}
+
+class _CustomPlayerListState extends State<CustomPlayerList>
+    with AutomaticKeepAliveClientMixin {
   ///
   ///
   ///
   @override
   Widget build(BuildContext context) {
-    if (players.isEmpty) {
+    super.build(context);
+    print('Building list');
+    if (widget.players.isEmpty) {
       return const Center(child: Text('0 Players'));
     }
     return SingleChildScrollView(
@@ -87,7 +95,7 @@ class CustomPlayerList extends StatelessWidget {
   ///
   List<DataRow> _createPlayerRows() {
     List<DataRow> rows = <DataRow>[];
-    for (Player player in players) {
+    for (Player player in widget.players) {
       rows.add(
         DataRow(
           cells: <DataCell>[
@@ -124,11 +132,11 @@ class CustomPlayerList extends StatelessWidget {
         color: MaterialStateProperty.all(Colors.grey.shade800),
         cells: <DataCell>[
           DataCell(
-            Text('${players.length} Players'),
+            Text('${widget.players.length} Players'),
           ),
           DataCell(
             Text(
-              players
+              widget.players
                   .fold(
                     0,
                     (int previousValue, Player element) =>
@@ -139,7 +147,7 @@ class CustomPlayerList extends StatelessWidget {
           ),
           DataCell(
             Text(
-              players
+              widget.players
                   .fold(
                     0,
                     (int previousValue, Player element) =>
@@ -150,7 +158,7 @@ class CustomPlayerList extends StatelessWidget {
           ),
           DataCell(
             Text(
-              players
+              widget.players
                   .fold(
                     0,
                     (int previousValue, Player element) =>
@@ -172,8 +180,10 @@ class CustomPlayerList extends StatelessWidget {
   ///
   ///
   double _calculateAveragePing() {
-    return players.map((Player m) => m.ping).reduce((int a, int b) => a + b) /
-        players.length;
+    return widget.players
+            .map((Player m) => m.ping)
+            .reduce((int a, int b) => a + b) /
+        widget.players.length;
   }
 
   ///
@@ -181,4 +191,10 @@ class CustomPlayerList extends StatelessWidget {
   ///
   TextStyle get _headerTextStyle =>
       const TextStyle(fontWeight: FontWeight.bold);
+
+  ///
+  ///
+  ///
+  @override
+  bool get wantKeepAlive => true;
 }
