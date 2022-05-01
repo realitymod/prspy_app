@@ -17,11 +17,12 @@ dependencies:
   http: 0.13.4
   # https://pub.dev/packages/flag
   flag: 6.0.0
-  # https://pub.dev/packages/marquee/install
+  # https://pub.dev/packages/marquee
   marquee: 2.2.1
   # https://pub.dev/packages/url_launcher
   url_launcher: 6.1.0
-
+  # https://pub.dev/packages/package_info_plus
+  package_info_plus: 1.4.2
 
   cupertino_icons: ^1.0.2
 
