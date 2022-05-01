@@ -12,10 +12,16 @@ class CustomPlayerList extends StatefulWidget {
   ///
   const CustomPlayerList({required this.players, Key? key}) : super(key: key);
 
+  ///
+  ///
+  ///
   @override
   State<CustomPlayerList> createState() => _CustomPlayerListState();
 }
 
+///
+///
+///
 class _CustomPlayerListState extends State<CustomPlayerList>
     with AutomaticKeepAliveClientMixin {
   ///
@@ -28,20 +34,26 @@ class _CustomPlayerListState extends State<CustomPlayerList>
     if (widget.players.isEmpty) {
       return const Center(child: Text('0 Players'));
     }
-    return ListView.separated(
-      itemCount: widget.players.length + 2,
-      separatorBuilder: (BuildContext context, int index) => const Divider(
-        color: Colors.white,
-      ),
-      itemBuilder: (BuildContext context, int index) {
-        if (index == 0) {
-          return _playerListTileHeader();
-        } else if (index == widget.players.length + 1) {
-          return _playerListTileFooter();
-        } else {
-          return _playerListTile(widget.players.elementAt(index - 1));
-        }
-      },
+    return Column(
+      children: <Widget>[
+        _playerListTileHeader(),
+        Expanded(
+          child: ListView.separated(
+            itemCount: widget.players.length + 1,
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(
+              color: Colors.white,
+            ),
+            itemBuilder: (BuildContext context, int index) {
+              if (index == widget.players.length) {
+                return _playerListTileFooter();
+              } else {
+                return _playerListTile(widget.players.elementAt(index));
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 
@@ -194,14 +206,5 @@ class _CustomPlayerListState extends State<CustomPlayerList>
         ],
       ),
     );
-  }
-
-  ///
-  ///
-  ///
-  @override
-  void dispose() {
-    print('deu dispose');
-    super.dispose();
   }
 }
