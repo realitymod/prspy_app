@@ -25,6 +25,22 @@ class CustomMainDrawer extends StatelessWidget {
               ),
             ),
             ListTile(
+              style: ListTileStyle.drawer,
+              title: Wrap(
+                children: const <Widget>[
+                  Text('Map Gallery'),
+                  Icon(
+                    Icons.open_in_new,
+                    size: 10,
+                  ),
+                ],
+              ),
+              onTap: () {
+                launchUrlString('https://www.realitymod.com/mapgallery/');
+              },
+            ),
+            ListTile(
+              style: ListTileStyle.drawer,
               title: Wrap(
                 children: const <Widget>[
                   Text('Forums'),
@@ -39,20 +55,7 @@ class CustomMainDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Wrap(
-                children: const <Widget>[
-                  Text('News'),
-                  Icon(
-                    Icons.open_in_new,
-                    size: 10,
-                  ),
-                ],
-              ),
-              onTap: () {
-                launchUrlString('https://www.realitymod.com/');
-              },
-            ),
-            ListTile(
+              style: ListTileStyle.drawer,
               title: Wrap(
                 children: const <Widget>[
                   Text('Donate'),
@@ -69,9 +72,10 @@ class CustomMainDrawer extends StatelessWidget {
               },
             ),
             ListTile(
+              style: ListTileStyle.drawer,
               title: Wrap(
                 children: const <Widget>[
-                  Text('Map Gallery'),
+                  Text('News'),
                   Icon(
                     Icons.open_in_new,
                     size: 10,
@@ -79,7 +83,7 @@ class CustomMainDrawer extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                launchUrlString('https://www.realitymod.com/mapgallery/');
+                launchUrlString('https://www.realitymod.com/');
               },
             ),
           ],
