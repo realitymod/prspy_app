@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prspy/screens/friends_screen.dart';
 import 'package:prspy/widgets/custom_app_version_indicator.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -27,6 +28,16 @@ class CustomMainDrawer extends StatelessWidget {
                   child: Image.asset(
                     'assets/images/pr_logo.png',
                   ),
+                ),
+                ListTile(
+                  title: const Text('Friends'),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const FriendsScreen(),
+                      ),
+                    );
+                  },
                 ),
                 ListTile(
                   style: ListTileStyle.drawer,
