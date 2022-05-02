@@ -1,10 +1,9 @@
-// To parse this JSON data, do
-//
-//     final server = serverFromJson(jsonString);
-
 import 'package:prspy/models/player.dart';
 import 'package:prspy/models/server_properties.dart';
 
+///
+///
+///
 class Server {
   late String serverId;
   late bool hasMumble;
