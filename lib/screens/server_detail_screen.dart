@@ -72,8 +72,10 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.blue,
-                        fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    Text(
+                      'Players: ${widget.server.players.where((Player player) => player.team == 2).length}',
                     ),
                   ],
                 ),
@@ -91,8 +93,10 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.red,
-                        fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    Text(
+                      'Players: ${widget.server.players.where((Player player) => player.team == 1).length}',
                     ),
                   ],
                 ),

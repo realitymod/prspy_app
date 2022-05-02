@@ -39,61 +39,17 @@ class _CustomPlayerListState extends State<CustomPlayerList>
         _playerListTileHeader(),
         Expanded(
           child: ListView.separated(
-            itemCount: widget.players.length + 1,
+            itemCount: widget.players.length,
             separatorBuilder: (BuildContext context, int index) =>
                 const Divider(
               color: Colors.white,
             ),
             itemBuilder: (BuildContext context, int index) {
-              if (index == widget.players.length) {
-                return _playerListTileFooter();
-              } else {
-                return _playerListTile(widget.players.elementAt(index));
-              }
+              return _playerListTile(widget.players.elementAt(index));
             },
           ),
         ),
       ],
-    );
-  }
-
-  ///
-  ///
-  ///
-  double _calculateAveragePing() {
-    return widget.players
-            .map((Player m) => m.ping)
-            .reduce((int a, int b) => a + b) /
-        widget.players.length;
-  }
-
-  ///
-  ///
-  ///
-  int get _calculateTotalScore {
-    return widget.players.fold(
-      0,
-      (int previousValue, Player element) => previousValue += element.score,
-    );
-  }
-
-  ///
-  ///
-  ///
-  int get _calculateTotalKills {
-    return widget.players.fold(
-      0,
-      (int previousValue, Player element) => previousValue += element.kills,
-    );
-  }
-
-  ///
-  ///
-  ///
-  int get _calculateTotalDeaths {
-    return widget.players.fold(
-      0,
-      (int previousValue, Player element) => previousValue += element.deaths,
     );
   }
 
@@ -113,19 +69,31 @@ class _CustomPlayerListState extends State<CustomPlayerList>
         children: const <Widget>[
           SizedBox(
             width: 50,
-            child: SelectableText('Score'),
+            child: SelectableText(
+              'Score',
+              textAlign: TextAlign.center,
+            ),
           ),
           SizedBox(
             width: 43,
-            child: SelectableText('Kills'),
+            child: SelectableText(
+              'Kills',
+              textAlign: TextAlign.center,
+            ),
           ),
           SizedBox(
             width: 50,
-            child: SelectableText('Deaths'),
+            child: SelectableText(
+              'Deaths',
+              textAlign: TextAlign.center,
+            ),
           ),
           SizedBox(
             width: 50,
-            child: SelectableText('Ping'),
+            child: SelectableText(
+              'Ping',
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),
@@ -148,59 +116,28 @@ class _CustomPlayerListState extends State<CustomPlayerList>
             width: 50,
             child: SelectableText(
               '${player.score}',
-              textAlign: TextAlign.start,
+              textAlign: TextAlign.center,
             ),
           ),
           SizedBox(
             width: 43,
             child: SelectableText(
               '${player.kills}',
-              textAlign: TextAlign.start,
+              textAlign: TextAlign.center,
             ),
           ),
           SizedBox(
             width: 43,
             child: SelectableText(
               '${player.deaths}',
-              textAlign: TextAlign.start,
+              textAlign: TextAlign.center,
             ),
           ),
           SizedBox(
             width: 50,
             child: SelectableText(
               '${player.ping}',
-              textAlign: TextAlign.start,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  ///
-  ///
-  ///
-  Widget _playerListTileFooter() {
-    return ListTile(
-      title: SelectableText('Players: ${widget.players.length}'),
-      trailing: Wrap(
-        children: <Widget>[
-          SizedBox(
-            width: 60,
-            child: SelectableText(_calculateTotalScore.toString()),
-          ),
-          SizedBox(
-            width: 43,
-            child: SelectableText(_calculateTotalKills.toString()),
-          ),
-          SizedBox(
-            width: 50,
-            child: SelectableText(_calculateTotalDeaths.toString()),
-          ),
-          SizedBox(
-            width: 50,
-            child: SelectableText(
-              _calculateAveragePing().toInt().toString(),
+              textAlign: TextAlign.center,
             ),
           ),
         ],
