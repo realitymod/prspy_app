@@ -1,4 +1,5 @@
 import 'package:flag/flag_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/nullable_string_helper.dart';
@@ -69,6 +70,30 @@ class CustomServerInformationDrawer extends StatelessWidget {
                       },
                       child: Image.network(
                         server.properties.map.mapOverviewUrl,
+                        loadingBuilder: (
+                          BuildContext context,
+                          Widget child,
+                          ImageChunkEvent? loadingProgress,
+                        ) {
+                          if (loadingProgress == null) {
+                            return Stack(
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                child,
+                                Icon(
+                                  Icons.open_in_new,
+                                  size: 35,
+                                  color: Colors.white.withOpacity(0.7),
+                                ),
+                              ],
+                            );
+                          }
+                          return const Center(
+                            child: CupertinoActivityIndicator(
+                              color: Colors.white,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
