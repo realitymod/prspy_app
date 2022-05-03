@@ -61,7 +61,7 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
             indicatorColor: Colors.white,
             tabs: <Widget>[
               Tab(
-                height: 55,
+                height: 60,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -83,7 +83,7 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
                 ),
               ),
               Tab(
-                height: 55,
+                height: 60,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
