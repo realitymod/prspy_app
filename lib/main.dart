@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
+import 'package:prspy/models/config.dart';
 import 'package:prspy/screens/server_list_screen.dart';
 
 ///
@@ -23,6 +24,8 @@ Future<void> main() async {
     SecurityContext.defaultContext
         .setTrustedCertificatesBytes(data.buffer.asInt8List());
   }
+
+  await Config().loadFriends();
 
   runApp(const MyApp());
 }

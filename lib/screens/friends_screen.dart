@@ -54,9 +54,14 @@ class _FriendsScreenState extends State<FriendsScreen> {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return const Center(child: CupertinoActivityIndicator());
                 }
-                for (Friend friend in _config.friends) {
-                  print('${friend.nickname} is online? ${friend.isOnline}');
-                }
+                _config.friends.sort(
+                  (Friend a, Friend b) {
+                    if (b.isOnline) {
+                      return 1;
+                    }
+                    return -1;
+                  },
+                );
                 return ListView.separated(
                   key: UniqueKey(),
                   itemCount: _config.friends.length,
