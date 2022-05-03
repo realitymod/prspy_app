@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prspy/models/server.dart';
 import 'package:prspy/screens/friends_screen.dart';
 import 'package:prspy/widgets/custom_app_version_indicator.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -7,10 +8,12 @@ import 'package:url_launcher/url_launcher_string.dart';
 ///
 ///
 class CustomMainDrawer extends StatelessWidget {
+  final List<Server> servers;
+
   ///
   ///
   ///
-  const CustomMainDrawer({Key? key}) : super(key: key);
+  const CustomMainDrawer({required this.servers, Key? key}) : super(key: key);
 
   ///
   ///
@@ -34,7 +37,9 @@ class CustomMainDrawer extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
-                        builder: (_) => const FriendsScreen(),
+                        builder: (_) => FriendsScreen(
+                          servers: servers,
+                        ),
                       ),
                     );
                   },

@@ -52,7 +52,14 @@ class _ServerListScreenState extends State<ServerListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const CustomMainDrawer(),
+      drawer: ValueListenableBuilder<FetchStatus>(
+        valueListenable: _controller.fetchStatus,
+        builder: (BuildContext context, FetchStatus value, Widget? child) {
+          return CustomMainDrawer(
+            servers: _controller.allServers,
+          );
+        },
+      ),
       appBar: AppBar(
         title: const Text('PRSPY'),
         actions: <Widget>[

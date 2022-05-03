@@ -25,8 +25,8 @@ class Server {
     countryFlag = json['countryFlag'];
     properties = ServerProperties.fromJson(json['properties']);
     players = <Player>[];
-    for (Map<String, dynamic> player in json['players']) {
-      players.add(Player.fromJson(player));
+    for (Map<String, dynamic> playerData in json['players']) {
+      players.add(Player.fromJson(playerData));
     }
   }
 }

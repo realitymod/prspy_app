@@ -4,6 +4,8 @@
 class Friend {
   late String nickname;
   bool isOnline = false;
+  String? serverId;
+  String? serverName;
 
   ///
   ///

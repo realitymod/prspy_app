@@ -34,6 +34,15 @@ class Config {
   ///
   ///
   ///
+  void removeFriend(Friend friend) {
+    friends.remove(friend);
+    friendsListNotifier.value = friends.length;
+    _saveFriends();
+  }
+
+  ///
+  ///
+  ///
   Future<void> _saveFriends({SharedPreferences? preferences}) async {
     preferences ??= await SharedPreferences.getInstance();
     await preferences.setStringList(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prspy/models/config.dart';
+import 'package:prspy/models/friend.dart';
 import 'package:prspy/models/player.dart';
 
 ///
@@ -24,13 +26,14 @@ class CustomPlayerList extends StatefulWidget {
 ///
 class _CustomPlayerListState extends State<CustomPlayerList>
     with AutomaticKeepAliveClientMixin {
+  final Config _config = Config();
+
   ///
   ///
   ///
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    print('Building list');
     if (widget.players.isEmpty) {
       return const Center(child: Text('0 Players'));
     }
@@ -43,6 +46,7 @@ class _CustomPlayerListState extends State<CustomPlayerList>
             separatorBuilder: (BuildContext context, int index) =>
                 const Divider(
               color: Colors.white,
+              height: 0,
             ),
             itemBuilder: (BuildContext context, int index) {
               return _playerListTile(widget.players.elementAt(index));
@@ -104,44 +108,68 @@ class _CustomPlayerListState extends State<CustomPlayerList>
   ///
   ///
   Widget _playerListTile(Player player) {
-    return ListTile(
-      title: FittedBox(
-        fit: BoxFit.scaleDown,
-        alignment: Alignment.centerLeft,
-        child: SelectableText(player.playerName),
-      ),
-      trailing: Wrap(
-        children: <Widget>[
-          SizedBox(
-            width: 50,
-            child: SelectableText(
-              '${player.score}',
-              textAlign: TextAlign.center,
-            ),
+    ValueNotifier<bool> isFriendNotifier = ValueNotifier<bool>(
+      _config.friends
+          .any((Friend friend) => friend.nickname == player.playerName),
+    );
+
+    return ValueListenableBuilder<bool>(
+      valueListenable: isFriendNotifier,
+      builder: (BuildContext context, bool isFriend, Widget? child) {
+        return ListTile(
+          title: FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(player.playerName),
           ),
-          SizedBox(
-            width: 43,
-            child: SelectableText(
-              '${player.kills}',
-              textAlign: TextAlign.center,
-            ),
+          trailing: Wrap(
+            children: <Widget>[
+              SizedBox(
+                width: 50,
+                child: Text(
+                  '${player.score}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                width: 43,
+                child: Text(
+                  '${player.kills}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                width: 43,
+                child: Text(
+                  '${player.deaths}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                width: 50,
+                child: Text(
+                  '${player.ping}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ),
-          SizedBox(
-            width: 43,
-            child: SelectableText(
-              '${player.deaths}',
-              textAlign: TextAlign.center,
-            ),
-          ),
-          SizedBox(
-            width: 50,
-            child: SelectableText(
-              '${player.ping}',
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
+          tileColor: isFriend ? Colors.blue.withOpacity(0.2) : null,
+          onTap: () {
+            if (isFriend) {
+              _config.removeFriend(
+                _config.friends.firstWhere(
+                  (Friend element) => element.nickname == player.playerName,
+                ),
+              );
+              isFriendNotifier.value = false;
+            } else {
+              _config.addFriend(player);
+              isFriendNotifier.value = true;
+            }
+          },
+        );
+      },
     );
   }
 }

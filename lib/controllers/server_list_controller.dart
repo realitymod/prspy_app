@@ -12,7 +12,7 @@ import 'package:prspy/models/server.dart';
 class ServerListController {
   final BuildContext context;
   List<Server> filteredServers = <Server>[];
-  List<Server> _servers = <Server>[];
+  List<Server> allServers = <Server>[];
   final Config _config = Config();
   final ValueNotifier<FetchStatus> fetchStatus = ValueNotifier<FetchStatus>(
     FetchStatus.fetching,
@@ -31,12 +31,12 @@ class ServerListController {
   Future<void> fetchServers({required ServerInfoConsumer consumer}) async {
     try {
       fetchStatus.value = FetchStatus.fetching;
-      _servers = await consumer.fetchServerList();
-      _servers.sort(
+      allServers = await consumer.fetchServerList();
+      allServers.sort(
         (Server a, Server b) =>
             b.properties.numplayers.compareTo(a.properties.numplayers),
       );
-      filteredServers = _servers;
+      filteredServers = allServers;
       fetchStatus.value = FetchStatus.fetched;
     } catch (err, stack) {
       log(err.toString());
@@ -54,7 +54,7 @@ class ServerListController {
   ///
   void applyFilters() {
     fetchStatus.value = FetchStatus.fetching;
-    filteredServers = _servers;
+    filteredServers = allServers;
     _showHideEmptyServers();
     _showHidePasswordedServers();
     _showHideCoopServers();
