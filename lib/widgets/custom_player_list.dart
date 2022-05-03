@@ -162,11 +162,19 @@ class _CustomPlayerListState extends State<CustomPlayerList>
                   (Friend element) => element.nickname == player.playerName,
                 ),
               );
+
               isFriendNotifier.value = false;
             } else {
               _config.addFriend(player);
               isFriendNotifier.value = true;
             }
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(isFriend ? 'Friend Removed' : 'Friend added'),
+                behavior: SnackBarBehavior.floating,
+              ),
+            );
           },
         );
       },
