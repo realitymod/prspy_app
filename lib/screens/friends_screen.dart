@@ -40,6 +40,27 @@ class _FriendsScreenState extends State<FriendsScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Friends'),
+          actions: <Widget>[
+            ValueListenableBuilder<int>(
+              valueListenable: _config.friendsListNotifier,
+              builder: (BuildContext context, Object? value, Widget? child) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Online: ${_countOnlineOfflineFriends(true)}',
+                      ),
+                      Text(
+                        'Offline: ${_countOnlineOfflineFriends(false)}',
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
         ),
         body: ValueListenableBuilder<int>(
           valueListenable: _config.friendsListNotifier,
@@ -55,30 +76,45 @@ class _FriendsScreenState extends State<FriendsScreen> {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return const Center(child: CupertinoActivityIndicator());
                 }
-                return ListView.builder(
-                  padding: const EdgeInsets.all(8),
-                  itemCount: _config.friends.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    Friend friend = _config.friends[index];
-                    return CustomFriendListTile(
-                      friend: friend,
-                      onDismissed: () => _removeFriend(friend),
-                      onTap: !friend.isOnline
-                          ? null
-                          : () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute<void>(
-                                  builder: (_) => ServerDetailScreen(
-                                    server: widget.servers.firstWhere(
-                                      (Server server) =>
-                                          server.serverId == friend.serverId,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                    );
-                  },
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    const Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Text(
+                        'Tip: Drag to the side to delete a friend',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        itemCount: _config.friends.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          Friend friend = _config.friends[index];
+                          return CustomFriendListTile(
+                            friend: friend,
+                            onDismissed: () => _removeFriend(friend),
+                            onTap: !friend.isOnline
+                                ? null
+                                : () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute<void>(
+                                        builder: (_) => ServerDetailScreen(
+                                          server: widget.servers.firstWhere(
+                                            (Server server) =>
+                                                server.serverId ==
+                                                friend.serverId,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 );
               },
             );
@@ -86,6 +122,15 @@ class _FriendsScreenState extends State<FriendsScreen> {
         ),
       ),
     );
+  }
+
+  ///
+  ///
+  ///
+  int _countOnlineOfflineFriends(bool isOnline) {
+    return _config.friends
+        .where((Friend friend) => friend.isOnline == isOnline)
+        .length;
   }
 
   ///
