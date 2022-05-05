@@ -5,6 +5,7 @@ import 'package:prspy/models/friend.dart';
 import 'package:prspy/models/player.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/screens/server_detail_screen.dart';
+import 'package:prspy/widgets/custom_friend_list_tile.dart';
 
 ///
 ///
@@ -54,50 +55,14 @@ class _FriendsScreenState extends State<FriendsScreen> {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return const Center(child: CupertinoActivityIndicator());
                 }
-                _config.friends.sort(
-                  (Friend a, Friend b) {
-                    if (b.isOnline) {
-                      return 1;
-                    }
-                    return -1;
-                  },
-                );
-                return ListView.separated(
-                  key: UniqueKey(),
+                return ListView.builder(
+                  padding: const EdgeInsets.all(8),
                   itemCount: _config.friends.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const Divider(
-                    color: Colors.white,
-                  ),
                   itemBuilder: (BuildContext context, int index) {
                     Friend friend = _config.friends[index];
-                    return ListTile(
-                      title: Text(
-                        friend.nickname,
-                        style: TextStyle(
-                          color: friend.isOnline ? Colors.green : Colors.grey,
-                        ),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          if (friend.isOnline)
-                            FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(friend.serverName!.trim()),
-                            ),
-                          Text(friend.isOnline ? 'Online' : 'Offline'),
-                        ],
-                      ),
-                      trailing: !friend.isOnline
-                          ? null
-                          : Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              children: const <Widget>[
-                                Text('Go to Server'),
-                                Icon(Icons.chevron_right),
-                              ],
-                            ),
+                    return CustomFriendListTile(
+                      friend: friend,
+                      onDismissed: () => _removeFriend(friend),
                       onTap: !friend.isOnline
                           ? null
                           : () {
@@ -126,6 +91,35 @@ class _FriendsScreenState extends State<FriendsScreen> {
   ///
   ///
   ///
+  void _removeFriend(Friend friend) {
+    _config.removeFriend(friend);
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Friend removed'),
+        duration: Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  ///
+  ///
+  ///
+  void _sortOnlineFirst() {
+    _config.friends.sort(
+      (Friend a, Friend b) {
+        if (b.isOnline) {
+          return 1;
+        }
+        return -1;
+      },
+    );
+  }
+
+  ///
+  ///
+  ///
   Future<void> _loadFriends() async {
     final Config _config = Config();
     for (Friend friend in _config.friends) {
@@ -138,5 +132,6 @@ class _FriendsScreenState extends State<FriendsScreen> {
         }
       }
     }
+    _sortOnlineFirst();
   }
 }
