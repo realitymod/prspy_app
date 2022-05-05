@@ -1,16 +1,17 @@
 ///
 ///
 ///
-class MapAssets {
+class MapAsset {
   late String key;
   late int initialDelay;
   late int respawnDelay;
   late int team;
+  late String name;
 
   ///
   ///
   ///
-  MapAssets.fromJson(Map<String, dynamic> map) {
+  MapAsset.fromJson(Map<String, dynamic> map) {
     key = map['Key'];
     initialDelay = map['InitialDelay'];
     respawnDelay = map['RespawnDelay'];

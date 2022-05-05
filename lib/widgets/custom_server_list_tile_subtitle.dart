@@ -32,7 +32,7 @@ class CustomServerListTileSubtitle extends StatelessWidget {
               '${serverProperties.map.name} - ',
             ),
             Text(
-              '[${serverProperties.map.gameType} ${serverProperties.map.layout}]',
+              '[${serverProperties.map.normalizedGameType} ${serverProperties.map.normalizedLayout}]',
             ),
           ],
         ),

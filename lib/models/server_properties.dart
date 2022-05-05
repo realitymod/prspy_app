@@ -1,4 +1,4 @@
-import 'package:prspy/models/map_model.dart';
+import 'package:prspy/models/map_detail.dart';
 
 ///
 ///
@@ -20,7 +20,7 @@ class ServerProperties {
   late String sponsorlogoUrl;
   late String communitylogoUrl;
   late String nextMap;
-  late MapModel map;
+  late MapDetail map;
   late int reservedSlots;
 
   ///
@@ -42,7 +42,7 @@ class ServerProperties {
     sponsorlogoUrl = json['bf2_sponsorlogo_url'];
     communitylogoUrl = json['bf2_communitylogo_url'];
     reservedSlots = int.parse(json['bf2_reservedslots']);
-    map = MapModel.fromJson(json);
+    map = MapDetail.fromJson(json);
 
     // Get the server version from hostname
     serverVersion = hostname.substring(4, hostname.indexOf(']'));

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:prspy/models/map_model.dart';
+import 'package:prspy/models/map_detail.dart';
 
 import '../test_jsons.dart';
 
@@ -11,7 +11,7 @@ void main() {
   ///
   ///
   test('Create a MapModel object from a json', () {
-    MapModel mapModel = MapModel.fromJson(TestJsons.serverPropertiesJson);
+    MapDetail mapModel = MapDetail.fromJson(TestJsons.serverPropertiesJson);
 
     expect(mapModel.layout, 'Std');
     expect(mapModel.gameType, 'AAS');

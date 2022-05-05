@@ -8,7 +8,7 @@ class Asset {
   static List<Asset> defaultAssets = <Asset>[];
 
   late String key;
-  String? name;
+  late String name;
   String? icon;
 
   ///

@@ -4,6 +4,7 @@ import 'package:prspy/controllers/server_list_controller.dart';
 import 'package:prspy/enums/fetch_status.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/screens/server_detail_screen.dart';
+import 'package:prspy/widgets/custom_fetching_data_indicator.dart';
 import 'package:prspy/widgets/custom_filter_options.dart';
 import 'package:prspy/widgets/custom_main_drawer.dart';
 import 'package:prspy/widgets/custom_server_list_tile.dart';
@@ -79,7 +80,7 @@ class _ServerListScreenState extends State<ServerListScreen> {
         builder: (BuildContext context, FetchStatus value, Widget? child) {
           switch (value) {
             case FetchStatus.fetching:
-              return _fetchingServers();
+              return const CustomFetchingDataIndicator();
             case FetchStatus.fetched:
               return ListView.builder(
                 itemCount: _controller.filteredServers.length,
@@ -101,28 +102,6 @@ class _ServerListScreenState extends State<ServerListScreen> {
               return _errorOnFetching();
           }
         },
-      ),
-    );
-  }
-
-  ///
-  ///
-  ///
-  Widget _fetchingServers() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
-          SizedBox(
-            height: 75,
-            width: 75,
-            child: CircularProgressIndicator.adaptive(),
-          ),
-          Padding(
-            padding: EdgeInsets.all(16),
-            child: Text('Fetching servers'),
-          ),
-        ],
       ),
     );
   }
