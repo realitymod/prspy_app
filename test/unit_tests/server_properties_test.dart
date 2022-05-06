@@ -18,7 +18,10 @@ void main() {
     expect(properties.hostname, 'Server Name');
     expect(properties.gamever, '1.5.3153-802.0');
     expect(properties.map.name, 'Kashan Desert');
-    expect(properties.map.gameType, 'AAS');
+    expect(properties.map.gameType, 'gpm_cq');
+    expect(properties.map.normalizedGameType, 'AAS');
+    expect(properties.map.normalizedLayout, 'Std');
+    expect(properties.map.normalizedMapName, 'kashandesert');
     expect(properties.gamevariant, 'pr');
     expect(properties.numplayers, 93);
     expect(properties.maxplayers, 100);

@@ -17,6 +17,15 @@ class Faction {
   ///
   ///
   ///
+  factory Faction.fromJson(Map<String, dynamic> map) {
+    Faction faction = Faction.fromCode(code: map['Code']);
+    faction.tickets = map['Tickets'];
+    return faction;
+  }
+
+  ///
+  ///
+  ///
   factory Faction.fromCode({required String code}) {
     code = code.toLowerCase();
     late Faction team;

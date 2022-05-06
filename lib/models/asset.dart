@@ -8,7 +8,7 @@ class Asset {
   static List<Asset> defaultAssets = <Asset>[];
 
   late String key;
-  String? name;
+  late String name;
   String? icon;
 
   ///
@@ -20,9 +20,9 @@ class Asset {
   ///
   ///
   Asset.fromJson(Map<String, dynamic> map) {
-    key = map['key'];
-    name = map['name'];
-    icon = map['icon'];
+    key = map['Key'];
+    name = map['Name'];
+    icon = map['Icon'];
   }
 
   ///

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/nullable_string_helper.dart';
+import 'package:prspy/screens/map_detail_screen.dart';
 import 'package:prspy/widgets/custom_description.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -61,12 +62,19 @@ class CustomServerInformationDrawer extends StatelessWidget {
                     ),
                   ),
                 Tooltip(
-                  message: 'Click to open Map Gallery',
+                  message: 'Click to open Map Detail',
                   child: MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
                       onTap: () {
-                        launchUrlString(server.properties.map.mapGaleryUrl);
+                        // launchUrlString(server.properties.map.mapGaleryUrl);
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => MapDetailScreen(
+                              mapModel: server.properties.map,
+                            ),
+                          ),
+                        );
                       },
                       child: Image.network(
                         server.properties.map.mapOverviewUrl,
@@ -98,11 +106,16 @@ class CustomServerInformationDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
+                const Text(
+                  'Tip: Click on map to open map details',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 10),
+                ),
                 CustomDescription(
                   label: 'Map:',
                   value: '${server.properties.map.name} '
-                      '${server.properties.map.gameType} '
-                      '${server.properties.map.layout}',
+                      '${server.properties.map.normalizedGameType} '
+                      '${server.properties.map.normalizedLayout}',
                 ),
                 CustomDescription(
                   label: 'Players:',
