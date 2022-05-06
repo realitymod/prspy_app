@@ -14,7 +14,9 @@ void main() {
     MapDetail mapModel = MapDetail.fromJson(TestJsons.serverPropertiesJson);
 
     expect(mapModel.normalizedLayout, 'Std');
-    expect(mapModel.gameType, 'AAS');
+    expect(mapModel.normalizedGameType, 'AAS');
+    expect(mapModel.gameType, 'gpm_cq');
+    expect(mapModel.normalizedMapName, 'kashandesert');
     expect(mapModel.name, 'Kashan Desert');
     expect(mapModel.faction2.name, 'United States Army');
     expect(mapModel.faction1.name, 'Middle Eastern Coalition');
