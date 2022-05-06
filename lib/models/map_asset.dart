@@ -23,7 +23,7 @@ class MapAsset {
   ///
   ///
   String get respawnDelayConverted {
-    if (respawnDelay == 0) {
+    if (respawnDelay == 0 || respawnDelay > 9999) {
       return 'No respawn';
     }
     return '${_convertToMinutes(respawnDelay)} minutes';
