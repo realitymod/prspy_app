@@ -3,10 +3,11 @@
 ///
 class MapAsset {
   late String key;
-  late int initialDelay;
-  late int respawnDelay;
+  late double initialDelay;
+  late double respawnDelay;
   late int team;
   late String name;
+  int amount = 1;
 
   ///
   ///
@@ -17,4 +18,29 @@ class MapAsset {
     respawnDelay = map['RespawnDelay'];
     team = map['Team'];
   }
+
+  ///
+  ///
+  ///
+  String get respawnDelayConverted {
+    if (respawnDelay == 0) {
+      return 'No respawn';
+    }
+    return '${_convertToMinutes(respawnDelay)} minutes';
+  }
+
+  ///
+  ///
+  ///
+  String get initialDelayConverted {
+    if (initialDelay == 0.0) {
+      return 'No delay';
+    }
+    return '${_convertToMinutes(initialDelay)} minutes';
+  }
+
+  ///
+  ///
+  ///
+  int _convertToMinutes(double seconds) => seconds ~/ 60;
 }

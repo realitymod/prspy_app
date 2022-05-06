@@ -106,6 +106,11 @@ class CustomServerInformationDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
+                const Text(
+                  'Tip: Click on map to open map details',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 10),
+                ),
                 CustomDescription(
                   label: 'Map:',
                   value: '${server.properties.map.name} '

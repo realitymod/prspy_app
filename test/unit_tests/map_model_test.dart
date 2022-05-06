@@ -13,7 +13,7 @@ void main() {
   test('Create a MapModel object from a json', () {
     MapDetail mapModel = MapDetail.fromJson(TestJsons.serverPropertiesJson);
 
-    expect(mapModel.layout, 'Std');
+    expect(mapModel.normalizedLayout, 'Std');
     expect(mapModel.gameType, 'AAS');
     expect(mapModel.name, 'Kashan Desert');
     expect(mapModel.faction2.name, 'United States Army');

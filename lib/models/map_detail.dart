@@ -7,7 +7,6 @@ import 'package:prspy/models/map_asset.dart';
 class MapDetail {
   late String name;
   late int size;
-  late String layout;
   late Faction faction1;
   late Faction faction2;
   late String gameType;
@@ -29,7 +28,6 @@ class MapDetail {
     faction1 = Faction.fromCode(code: map['bf2_team1']);
     faction2 = Faction.fromCode(code: map['bf2_team2']);
     gameType = map['gametype'];
-    layout = map['layout'];
     _setMapGalleryUrls();
   }
 
