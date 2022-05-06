@@ -37,7 +37,7 @@ class MapDetailDTO {
           } else {
             team1Assets!.add(mapAsset);
           }
-        } else {
+        } else if (mapAsset.team == 2) {
           if (_checkIfSimilarAssetIsAlreadyAdded(team2Assets!, mapAsset)) {
             _updateAssetAmount(team2Assets!, mapAsset);
           } else {
