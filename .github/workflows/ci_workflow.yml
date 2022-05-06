@@ -30,6 +30,8 @@ jobs:
       - run: flutter pub get
       - run: flutter test
   Build:
+    environment: testing
+    if: github.ref == 'refs/heads/testing'
     name: 'Build APK'
     needs:
       - Analyzer
@@ -38,8 +40,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
-      - name: 'Build web version'
+      - name: 'Build Testing APK'
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.5'
       - run: flutter build apk
+      - uses: actions/upload-artifact@v3
+        with:
+          name: testing-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
