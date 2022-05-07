@@ -180,7 +180,7 @@ class _CustomPlayerListState extends State<CustomPlayerList>
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(isFriend.value ? 'Friend Removed' : 'Friend added'),
+        content: Text(isFriend.value ? 'Friend added' : 'Friend Removed'),
         behavior: SnackBarBehavior.floating,
       ),
     );
