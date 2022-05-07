@@ -51,7 +51,7 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
   Build_aab:
     environment: stable
-#    if: github.ref == 'refs/heads/stable'
+    if: github.ref == 'refs/heads/stable'
     name: 'Build Signed AAB for Production'
     needs:
       - Analyzer
