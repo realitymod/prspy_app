@@ -52,7 +52,7 @@ jobs:
   Build_aab:
     environment: stable
 #    if: github.ref == 'refs/heads/stable'
-    name: 'Build APK for Testing'
+    name: 'Build Signed AAB for Production'
     needs:
       - Analyzer
       - Tests
