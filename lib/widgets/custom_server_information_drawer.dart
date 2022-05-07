@@ -84,17 +84,7 @@ class CustomServerInformationDrawer extends StatelessWidget {
                           ImageChunkEvent? loadingProgress,
                         ) {
                           if (loadingProgress == null) {
-                            return Stack(
-                              alignment: Alignment.center,
-                              children: <Widget>[
-                                child,
-                                Icon(
-                                  Icons.open_in_new,
-                                  size: 35,
-                                  color: Colors.white.withOpacity(0.7),
-                                ),
-                              ],
-                            );
+                            return child;
                           }
                           return const Center(
                             child: CupertinoActivityIndicator(
