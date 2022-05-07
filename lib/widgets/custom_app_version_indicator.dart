@@ -23,9 +23,9 @@ class CustomAppVersionIndicator extends StatelessWidget {
         }
         PackageInfo pkgInfo = snapshot.data!;
 
-        return Padding(
-          padding: const EdgeInsets.all(8),
-          child: Text('${pkgInfo.version}'),
+        return Text(
+          'v${pkgInfo.version}',
+          style: const TextStyle(fontSize: 11),
         );
       },
     );

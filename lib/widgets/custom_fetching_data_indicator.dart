@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 ///
 ///
 class CustomFetchingDataIndicator extends StatelessWidget {
+  final String message;
+
   ///
   ///
   ///
-  const CustomFetchingDataIndicator({Key? key}) : super(key: key);
+  const CustomFetchingDataIndicator({required this.message, Key? key})
+      : super(key: key);
 
   ///
   ///
@@ -17,15 +20,15 @@ class CustomFetchingDataIndicator extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
-          SizedBox(
+        children: <Widget>[
+          const SizedBox(
             height: 75,
             width: 75,
             child: CircularProgressIndicator.adaptive(),
           ),
           Padding(
-            padding: EdgeInsets.all(16),
-            child: Text('Fetching servers'),
+            padding: const EdgeInsets.all(16),
+            child: Text(message),
           ),
         ],
       ),

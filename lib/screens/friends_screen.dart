@@ -67,7 +67,12 @@ class _FriendsScreenState extends State<FriendsScreen> {
           builder: (BuildContext context, int value, Widget? child) {
             if (value == 0) {
               return const Center(
-                child: Text('You haven\'t added any friends yet.'),
+                child: Text(
+                  'You have no friends.\n'
+                  'Please add new friends by clicking on\n'
+                  'their name when viewing a server.',
+                  textAlign: TextAlign.center,
+                ),
               );
             }
             return FutureBuilder<void>(
@@ -82,7 +87,7 @@ class _FriendsScreenState extends State<FriendsScreen> {
                     const Padding(
                       padding: EdgeInsets.all(8),
                       child: Text(
-                        'Tip: Drag to the side to delete a friend',
+                        'Tip: swipe to delete a friend',
                         textAlign: TextAlign.center,
                       ),
                     ),
