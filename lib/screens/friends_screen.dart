@@ -82,7 +82,7 @@ class _FriendsScreenState extends State<FriendsScreen> {
                     const Padding(
                       padding: EdgeInsets.all(8),
                       child: Text(
-                        'Tip: Drag to the side to delete a friend',
+                        'Tip: swipe to delete a friend',
                         textAlign: TextAlign.center,
                       ),
                     ),
