@@ -80,7 +80,9 @@ class _ServerListScreenState extends State<ServerListScreen> {
         builder: (BuildContext context, FetchStatus value, Widget? child) {
           switch (value) {
             case FetchStatus.fetching:
-              return const CustomFetchingDataIndicator();
+              return const CustomFetchingDataIndicator(
+                message: 'Fetching servers',
+              );
             case FetchStatus.fetched:
               return ListView.builder(
                 itemCount: _controller.filteredServers.length,

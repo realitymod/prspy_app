@@ -60,7 +60,9 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
                 _viewInMapGallery(),
               ],
             ),
-            body: const CustomFetchingDataIndicator(),
+            body: const CustomFetchingDataIndicator(
+              message: 'Fetching map data',
+            ),
           );
         }
         if (snapshot.hasError) {
