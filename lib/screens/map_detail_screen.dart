@@ -93,6 +93,7 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
                       children: <Widget>[
                         Text(
                           mapDetail.teams!.last.name,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(color: Colors.blue),
                         ),
                         Text('${mapDetail.teams!.last.tickets} Tickets'),
@@ -105,6 +106,7 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
                       children: <Widget>[
                         Text(
                           mapDetail.teams!.first.name,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(color: Colors.red),
                         ),
                         Text('${mapDetail.teams!.first.tickets} Tickets'),
