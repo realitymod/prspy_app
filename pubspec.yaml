@@ -42,3 +42,4 @@ flutter:
     - assets/ca/certificate.pem
     - assets/images/
     - assets/images/faction_flags/
+    - assets/images/asset_icons/

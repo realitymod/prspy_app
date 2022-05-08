@@ -7,6 +7,7 @@ class MapAsset {
   late double respawnDelay;
   late int team;
   late String name;
+  String? icon;
   int amount = 1;
 
   ///
@@ -28,6 +29,11 @@ class MapAsset {
     }
     return '${_convertToMinutes(respawnDelay)} minutes';
   }
+
+  ///
+  ///
+  ///
+  String get getIconAssetPath => 'assets/images/asset_icons/$icon.png';
 
   ///
   ///
