@@ -37,7 +37,7 @@ class MapDetailDTO {
           } else {
             team1Assets!.add(mapAsset);
           }
-        } else if (mapAsset.team == 2) {
+        } else {
           if (_checkIfSimilarAssetIsAlreadyAdded(team2Assets!, mapAsset)) {
             _updateAssetAmount(team2Assets!, mapAsset);
           } else {
@@ -60,10 +60,10 @@ class MapDetailDTO {
   ///
   ///
   void _setAssetName(MapAsset mapAsset) {
-    mapAsset.name = Asset.defaultAssets
-        .firstWhere((Asset element) =>
-            element.key.toLowerCase() == mapAsset.key.toLowerCase())
-        .name;
+    Asset asset = Asset.defaultAssets.firstWhere((Asset element) =>
+        element.key.toLowerCase() == mapAsset.key.toLowerCase());
+    mapAsset.name = asset.name;
+    mapAsset.icon = asset.icon;
   }
 
   ///

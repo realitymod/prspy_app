@@ -3,7 +3,7 @@ description: Mobile version of Project Reality PRSPY
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
@@ -42,3 +42,4 @@ flutter:
     - assets/ca/certificate.pem
     - assets/images/
     - assets/images/faction_flags/
+    - assets/images/asset_icons/

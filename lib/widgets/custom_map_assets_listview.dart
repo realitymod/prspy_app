@@ -24,6 +24,14 @@ class CustomMapAssetsListView extends StatelessWidget {
         MapAsset asset = assets[index];
         return Card(
           child: ListTile(
+            leading: Container(
+              height: double.infinity,
+              child: Image.asset(
+                asset.getIconAssetPath,
+                height: 40,
+                width: 40,
+              ),
+            ),
             title: Text('${asset.amount}x ${asset.name}'),
             isThreeLine: asset.initialDelay > 0,
             subtitle: Column(
