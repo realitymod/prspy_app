@@ -89,7 +89,8 @@ class ServerListController {
   void _showHideCoopServers() {
     if (_config.hideCoopServers) {
       filteredServers = filteredServers
-          .where((Server server) => server.properties.map.gameType != 'Co-Op')
+          .where((Server server) =>
+              server.properties.map.normalizedGameType != 'Co-Op')
           .toList();
     }
   }
