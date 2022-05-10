@@ -10,6 +10,7 @@ class Player {
   late int ping;
   late bool isAi;
   String? clam;
+  late String prStatsNormalizedPlayerName;
 
   ///
   ///
@@ -41,6 +42,7 @@ class Player {
       name = playerNameAndClam.last;
     }
     name = name.trim();
+    prStatsNormalizedPlayerName = name.replaceAll('_', '');
   }
 
   ///
