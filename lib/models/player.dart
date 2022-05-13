@@ -9,7 +9,8 @@ class Player {
   int? team;
   late int ping;
   late bool isAi;
-  String? clam;
+  String? clan;
+  late String prStatsNormalizedPlayerName;
 
   ///
   ///
@@ -37,17 +38,18 @@ class Player {
     isAi = json['isAi'] == 1;
     List<String> playerNameAndClam = name.split(' ');
     if (playerNameAndClam.length > 1 && playerNameAndClam.first.isNotEmpty) {
-      clam = playerNameAndClam.first.trim();
+      clan = playerNameAndClam.first.trim();
       name = playerNameAndClam.last;
     }
     name = name.trim();
+    prStatsNormalizedPlayerName = name.replaceAll('&', '%26');
   }
 
   ///
   ///
   ///
   String get playerName {
-    String name = clam ?? '';
+    String name = clan ?? '';
     name += ' ${this.name}';
     return name.trim();
   }
