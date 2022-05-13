@@ -35,7 +35,7 @@ class Player {
     deaths = json['deaths'];
     team = json['team'];
     ping = json['ping'] ?? 0;
-    isAi = json['isAi'] == 1;
+    isAi = json['isAI'] == 1;
     List<String> playerNameAndClam = name.split(' ');
     if (playerNameAndClam.length > 1 && playerNameAndClam.first.isNotEmpty) {
       clan = playerNameAndClam.first.trim();

@@ -192,10 +192,10 @@ class _CustomPlayerListState extends State<CustomPlayerList>
   ///
   ///
   void _openPlayerStats(Player player) {
-    launchUrlString(
+    String encodedUri = Uri.encodeFull(
       'https://prstats.tk/player/find?name=${player.prStatsNormalizedPlayerName}',
-      mode: LaunchMode.externalApplication,
     );
+    launchUrlString(encodedUri, mode: LaunchMode.externalApplication);
   }
 
   ///
