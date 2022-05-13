@@ -7,6 +7,9 @@ class CustomDescription extends StatelessWidget {
   final String label;
   final String value;
   final TextAlign? valueTextAlign;
+  final EdgeInsets? valuePadding;
+  final TextStyle? labelStyle;
+  final TextStyle? valueStyle;
 
   ///
   ///
@@ -15,6 +18,9 @@ class CustomDescription extends StatelessWidget {
     required this.label,
     required this.value,
     this.valueTextAlign,
+    this.valuePadding,
+    this.labelStyle,
+    this.valueStyle,
     Key? key,
   }) : super(key: key);
 
@@ -28,18 +34,20 @@ class CustomDescription extends StatelessWidget {
       children: <Widget>[
         Text(
           label,
-          style: const TextStyle(
-            color: Colors.blueAccent,
-          ),
+          style: labelStyle ??
+              const TextStyle(
+                color: Colors.blueAccent,
+              ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 8),
+          padding: valuePadding ?? const EdgeInsets.only(left: 8),
           child: Text(
             value,
             textAlign: valueTextAlign,
-            style: const TextStyle(
-              fontSize: 14,
-            ),
+            style: valueStyle ??
+                const TextStyle(
+                  fontSize: 14,
+                ),
           ),
         ),
       ],
