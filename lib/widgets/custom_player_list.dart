@@ -39,6 +39,9 @@ class _CustomPlayerListState extends State<CustomPlayerList>
     if (widget.players.isEmpty) {
       return const Center(child: Text('0 Players'));
     }
+    widget.players.sort(
+      (Player a, Player b) => b.score.compareTo(a.score),
+    );
     return Column(
       children: <Widget>[
         _playerListTileHeader(),
