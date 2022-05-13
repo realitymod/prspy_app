@@ -14,7 +14,7 @@ void main() {
     Player player = Player.fromJson(TestJsons.playersJson.first);
 
     expect(player.name, 'Player_1');
-    expect(player.clam, '=CLAM=');
+    expect(player.clan, '=CLAM=');
     expect(player.score, 379);
     expect(player.kills, 0);
     expect(player.deaths, 0);

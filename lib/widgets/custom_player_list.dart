@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:prspy/models/config.dart';
 import 'package:prspy/models/friend.dart';
 import 'package:prspy/models/player.dart';
-import 'package:prspy/widgets/custom_player_options_menu.dart';
+import 'package:prspy/widgets/custom_player_detail_modal.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 ///
 ///
@@ -117,52 +118,80 @@ class _CustomPlayerListState extends State<CustomPlayerList>
     return ValueListenableBuilder<bool>(
       valueListenable: isFriendNotifier,
       builder: (BuildContext context, bool isFriend, Widget? child) {
-        return CustomPlayerOptionsMenu(
-          isFriend: isFriend,
-          player: player,
-          onFriendTap: () => _addOrRemoveFriend(isFriendNotifier, player),
-          child: ListTile(
-            title: FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerLeft,
-              child: Text(player.playerName),
-            ),
-            trailing: Wrap(
-              children: <Widget>[
-                SizedBox(
-                  width: 50,
-                  child: Text(
-                    '${player.score}',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                SizedBox(
-                  width: 43,
-                  child: Text(
-                    '${player.kills}',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                SizedBox(
-                  width: 43,
-                  child: Text(
-                    '${player.deaths}',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                SizedBox(
-                  width: 50,
-                  child: Text(
-                    '${player.ping}',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-            tileColor: isFriend ? Colors.blue.withOpacity(0.2) : null,
+        return ListTile(
+          title: FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(player.playerName),
           ),
+          trailing: Wrap(
+            children: <Widget>[
+              SizedBox(
+                width: 50,
+                child: Text(
+                  '${player.score}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                width: 43,
+                child: Text(
+                  '${player.kills}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                width: 43,
+                child: Text(
+                  '${player.deaths}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                width: 50,
+                child: Text(
+                  '${player.ping}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+          tileColor: isFriend ? Colors.blue.withOpacity(0.2) : null,
+          onTap: () {
+            if (!player.isAi) {
+              showModalBottomSheet(
+                context: context,
+                clipBehavior: Clip.antiAlias,
+                backgroundColor: Colors.transparent,
+                constraints: const BoxConstraints(
+                  maxHeight: 250,
+                ),
+                builder: (BuildContext context) {
+                  return CustomPlayerDetailModal(
+                    player: player,
+                    onAddRemoveFriendTap: () => _addOrRemoveFriend(
+                      isFriendNotifier,
+                      player,
+                    ),
+                    onViewStatsTap: () => _openPlayerStats(player),
+                    isFriend: isFriend,
+                  );
+                },
+              );
+            }
+          },
         );
       },
+    );
+  }
+
+  ///
+  ///
+  ///
+  void _openPlayerStats(Player player) {
+    launchUrlString(
+      'https://prstats.tk/player/find?name=${player.prStatsNormalizedPlayerName}',
+      mode: LaunchMode.externalApplication,
     );
   }
 
@@ -182,6 +211,7 @@ class _CustomPlayerListState extends State<CustomPlayerList>
       _config.addFriend(player);
       isFriend.value = true;
     }
+    Navigator.of(context).pop();
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

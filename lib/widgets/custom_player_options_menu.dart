@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prspy/models/player.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 ///
 ///
@@ -32,6 +31,10 @@ class CustomPlayerOptionsMenu extends StatelessWidget {
       itemBuilder: (BuildContext context) {
         return <PopupMenuEntry<void>>[
           PopupMenuItem<void>(
+            enabled: false,
+            child: Text(player.playerName),
+          ),
+          PopupMenuItem<void>(
             onTap: onFriendTap,
             child: Row(
               children: <Widget>[
@@ -48,10 +51,12 @@ class CustomPlayerOptionsMenu extends StatelessWidget {
               ],
             ),
             onTap: () {
-              launchUrlString(
-                'http://prstats.tk/${player.prStatsNormalizedPlayerName}',
-                mode: LaunchMode.externalApplication,
-              );
+              print(
+                  'https://prstats.tk/player/find?name=${player.prStatsNormalizedPlayerName}');
+              // launchUrlString(
+              //   'https://prstats.tk/player/find?name=${player.prStatsNormalizedPlayerName}',
+              //   mode: LaunchMode.externalApplication,
+              // );
             },
           ),
         ].toList();
