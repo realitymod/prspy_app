@@ -78,7 +78,7 @@ class CustomMainDrawer extends StatelessWidget {
                 ),
                 subtitle: const Text('Official Project Reality Discord'),
                 onTap: () {
-                  launchUrlString('https://discord.gg/QKZbptK3');
+                  launchUrlString('https://discord.gg/gCnUwXTVaC');
                 },
               ),
               ListTile(
