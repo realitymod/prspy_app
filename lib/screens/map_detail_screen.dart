@@ -89,9 +89,14 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
                 indicatorColor: Colors.white,
                 tabs: <Tab>[
                   Tab(
+                    height: 60,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
+                        Image.asset(
+                          mapDetail.teams!.last.flagAsset,
+                          width: 25,
+                        ),
                         Text(
                           mapDetail.teams!.last.name,
                           textAlign: TextAlign.center,
@@ -102,9 +107,14 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
                     ),
                   ),
                   Tab(
+                    height: 60,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
+                        Image.asset(
+                          mapDetail.teams!.first.flagAsset,
+                          width: 25,
+                        ),
                         Text(
                           mapDetail.teams!.first.name,
                           textAlign: TextAlign.center,
