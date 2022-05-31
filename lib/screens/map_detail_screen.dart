@@ -86,6 +86,7 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
                 _viewInMapGallery(),
               ],
               bottom: TabBar(
+                indicatorColor: Colors.white,
                 tabs: <Tab>[
                   Tab(
                     child: Column(
