@@ -164,20 +164,21 @@ class _CustomPlayerListState extends State<CustomPlayerList>
             if (!player.isAi) {
               showModalBottomSheet(
                 context: context,
-                clipBehavior: Clip.antiAlias,
                 backgroundColor: Colors.transparent,
-                constraints: const BoxConstraints(
-                  maxHeight: 250,
-                ),
+                isScrollControlled: true,
                 builder: (BuildContext context) {
-                  return CustomPlayerDetailModal(
-                    player: player,
-                    onAddRemoveFriendTap: () => _addOrRemoveFriend(
-                      isFriendNotifier,
-                      player,
-                    ),
-                    onViewStatsTap: () => _openPlayerStats(player),
-                    isFriend: isFriend,
+                  return Wrap(
+                    children: <Widget>[
+                      CustomPlayerDetailModal(
+                        player: player,
+                        onAddRemoveFriendTap: () => _addOrRemoveFriend(
+                          isFriendNotifier,
+                          player,
+                        ),
+                        onViewStatsTap: () => _openPlayerStats(player),
+                        isFriend: isFriend,
+                      ),
+                    ],
                   );
                 },
               );
