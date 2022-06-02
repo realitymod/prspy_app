@@ -46,14 +46,21 @@ class _FriendsScreenState extends State<FriendsScreen> {
               builder: (BuildContext context, Object? value, Widget? child) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: Wrap(
+                    runAlignment: WrapAlignment.center,
                     children: <Widget>[
-                      Text(
-                        'Online: ${_countOnlineOfflineFriends(true)}',
+                      Chip(
+                        label: const Text('Online'),
+                        avatar: Text('${_countOnlineOfflineFriends(true)}'),
+                        backgroundColor: Colors.green,
                       ),
-                      Text(
-                        'Offline: ${_countOnlineOfflineFriends(false)}',
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Chip(
+                        label: const Text('Offline'),
+                        avatar: Text('${_countOnlineOfflineFriends(false)}'),
+                        backgroundColor: Colors.grey,
                       ),
                     ],
                   ),
