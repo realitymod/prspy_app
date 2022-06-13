@@ -5,6 +5,7 @@ import 'package:prspy/models/player.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/widgets/custom_player_list.dart';
 import 'package:prspy/widgets/custom_server_information_drawer.dart';
+import 'package:prspy/widgets/custom_team_tab.dart';
 
 ///
 ///
@@ -60,49 +61,17 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           bottom: TabBar(
             indicatorColor: Colors.white,
             tabs: <Widget>[
-              Tab(
-                height: 60,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      widget.server.properties.map.faction2.flagAsset,
-                      width: 25,
-                    ),
-                    Text(
-                      widget.server.properties.map.faction2.name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.blue,
-                      ),
-                    ),
-                    Text(
-                      'Players: ${widget.server.players.where((Player player) => player.team == 2).length}',
-                    ),
-                  ],
-                ),
+              CustomTeamTab(
+                faction: widget.server.properties.map.faction2,
+                players: widget.server.players
+                    .where((Player player) => player.team == 2)
+                    .toList(),
               ),
-              Tab(
-                height: 60,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      widget.server.properties.map.faction1.flagAsset,
-                      width: 25,
-                    ),
-                    Text(
-                      widget.server.properties.map.faction1.name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.red,
-                      ),
-                    ),
-                    Text(
-                      'Players: ${widget.server.players.where((Player player) => player.team == 1).length}',
-                    ),
-                  ],
-                ),
+              CustomTeamTab(
+                faction: widget.server.properties.map.faction1,
+                players: widget.server.players
+                    .where((Player player) => player.team == 1)
+                    .toList(),
               ),
             ],
           ),

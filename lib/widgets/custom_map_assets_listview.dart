@@ -10,8 +10,7 @@ class CustomMapAssetsListView extends StatelessWidget {
   ///
   ///
   ///
-  const CustomMapAssetsListView({required this.assets, Key? key})
-      : super(key: key);
+  const CustomMapAssetsListView({required this.assets, Key? key}) : super(key: key);
 
   ///
   ///
@@ -19,6 +18,7 @@ class CustomMapAssetsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: const EdgeInsets.symmetric(vertical: 3),
       itemCount: assets.length,
       itemBuilder: (BuildContext context, int index) {
         MapAsset asset = assets[index];
@@ -38,8 +38,7 @@ class CustomMapAssetsListView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text('${asset.respawnDelayConverted}'),
-                if (asset.initialDelay > 0)
-                  Text('Delayed: ${asset.initialDelayConverted}'),
+                if (asset.initialDelay > 0) Text('Delayed: ${asset.initialDelayConverted}'),
               ],
             ),
           ),

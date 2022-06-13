@@ -4,6 +4,7 @@ import 'package:prspy/models/map_detail.dart';
 import 'package:prspy/models/map_detail_dto.dart';
 import 'package:prspy/widgets/custom_fetching_data_indicator.dart';
 import 'package:prspy/widgets/custom_map_assets_listview.dart';
+import 'package:prspy/widgets/custom_team_tab.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 ///
@@ -86,32 +87,13 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
                 _viewInMapGallery(),
               ],
               bottom: TabBar(
-                tabs: <Tab>[
-                  Tab(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          mapDetail.teams!.last.name,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(color: Colors.blue),
-                        ),
-                        Text('${mapDetail.teams!.last.tickets} Tickets'),
-                      ],
-                    ),
+                indicatorColor: Colors.white,
+                tabs: <Widget>[
+                  CustomTeamTab(
+                    faction: mapDetail.teams!.last,
                   ),
-                  Tab(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          mapDetail.teams!.first.name,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(color: Colors.red),
-                        ),
-                        Text('${mapDetail.teams!.first.tickets} Tickets'),
-                      ],
-                    ),
+                  CustomTeamTab(
+                    faction: mapDetail.teams!.first,
                   ),
                 ],
               ),

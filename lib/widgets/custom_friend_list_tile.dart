@@ -25,8 +25,21 @@ class CustomFriendListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      background: const Card(
+      background: Card(
         color: Colors.red,
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const <Widget>[
+                Icon(Icons.delete),
+                Icon(Icons.delete),
+              ],
+            ),
+          ),
+        ),
       ),
       onDismissed: (DismissDirection direction) {
         onDismissed();

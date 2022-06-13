@@ -75,35 +75,38 @@ class _ServerListScreenState extends State<ServerListScreen> {
           ),
         ],
       ),
-      body: ValueListenableBuilder<FetchStatus>(
-        valueListenable: _controller.fetchStatus,
-        builder: (BuildContext context, FetchStatus value, Widget? child) {
-          switch (value) {
-            case FetchStatus.fetching:
-              return const CustomFetchingDataIndicator(
-                message: 'Fetching servers',
-              );
-            case FetchStatus.fetched:
-              return ListView.builder(
-                itemCount: _controller.filteredServers.length,
-                itemBuilder: (BuildContext context, int index) {
-                  Server server = _controller.filteredServers.elementAt(index);
-                  return CustomServerListTile(
-                    server: server,
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => ServerDetailScreen(server: server),
-                        ),
-                      );
-                    },
-                  );
-                },
-              );
-            case FetchStatus.error:
-              return _errorOnFetching();
-          }
-        },
+      body: SafeArea(
+        child: ValueListenableBuilder<FetchStatus>(
+          valueListenable: _controller.fetchStatus,
+          builder: (BuildContext context, FetchStatus value, Widget? child) {
+            switch (value) {
+              case FetchStatus.fetching:
+                return const CustomFetchingDataIndicator(
+                  message: 'Fetching servers',
+                );
+              case FetchStatus.fetched:
+                return ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 3),
+                  itemCount: _controller.filteredServers.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Server server = _controller.filteredServers.elementAt(index);
+                    return CustomServerListTile(
+                      server: server,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => ServerDetailScreen(server: server),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                );
+              case FetchStatus.error:
+                return _errorOnFetching();
+            }
+          },
+        ),
       ),
     );
   }

@@ -24,33 +24,33 @@ class CustomPlayerDetailModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey.shade800,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(25),
-          topRight: Radius.circular(25),
-        ),
-      ),
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          CustomDescription(
-            label: 'Player name:',
-            value: player.name,
-            valuePadding: EdgeInsets.zero,
-            labelStyle: const TextStyle(
-              fontSize: 20,
-              color: Colors.blueAccent,
-            ),
-            valueStyle: const TextStyle(fontSize: 20),
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade800,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),
           ),
-          if (player.clan != null)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: CustomDescription(
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            CustomDescription(
+              label: 'Player name:',
+              value: player.name,
+              valuePadding: EdgeInsets.zero,
+              labelStyle: const TextStyle(
+                fontSize: 20,
+                color: Colors.blueAccent,
+              ),
+              valueStyle: const TextStyle(fontSize: 20),
+            ),
+            if (player.clan != null)
+              CustomDescription(
                 label: 'Clan:',
                 value: player.clan!,
                 valuePadding: EdgeInsets.zero,
@@ -60,16 +60,14 @@ class CustomPlayerDetailModal extends StatelessWidget {
                 ),
                 valueStyle: const TextStyle(fontSize: 20),
               ),
-            ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
+            Row(
               children: <Widget>[
                 Expanded(
                   child: ElevatedButton.icon(
                     onPressed: onAddRemoveFriendTap,
                     label: Text(
                       isFriend ? 'Remove Friend' : 'Add Friend',
+                      textAlign: TextAlign.center,
                     ),
                     icon: Icon(
                       isFriend ? Icons.person_remove : Icons.person_add,
@@ -87,14 +85,15 @@ class CustomPlayerDetailModal extends StatelessWidget {
                     onPressed: onViewStatsTap,
                     label: const Text(
                       'View player stats',
+                      textAlign: TextAlign.center,
                     ),
                     icon: const Icon(Icons.open_in_new),
                   ),
                 ),
               ],
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
