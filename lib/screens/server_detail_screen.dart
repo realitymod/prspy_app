@@ -63,15 +63,15 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
             tabs: <Widget>[
               CustomTeamTab(
                 faction: widget.server.properties.map.faction2,
-                players: widget.server.players
+                totalPlayers: widget.server.players
                     .where((Player player) => player.team == 2)
-                    .toList(),
+                    .length,
               ),
               CustomTeamTab(
                 faction: widget.server.properties.map.faction1,
-                players: widget.server.players
+                totalPlayers: widget.server.players
                     .where((Player player) => player.team == 1)
-                    .toList(),
+                    .length,
               ),
             ],
           ),

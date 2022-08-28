@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:prspy/models/faction.dart';
-import 'package:prspy/models/player.dart';
 
 ///
 ///
 ///
 class CustomTeamTab extends StatelessWidget {
   final Faction faction;
-  final List<Player>? players;
+  final int? totalPlayers;
 
   ///
   ///
   ///
   const CustomTeamTab({
     required this.faction,
-    this.players,
+    this.totalPlayers,
     Key? key,
   }) : super(key: key);
 
@@ -39,9 +38,9 @@ class CustomTeamTab extends StatelessWidget {
               color: Colors.blue,
             ),
           ),
-          if (players != null)
+          if (totalPlayers != null && totalPlayers! > 0)
             Text(
-              'Players: ${players!.length}',
+              'Players: $totalPlayers',
             ),
           if (faction.tickets != null) Text('${faction.tickets} Tickets'),
         ],
