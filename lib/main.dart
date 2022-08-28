@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:http/http.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
 import 'package:prspy/models/config.dart';
 import 'package:prspy/screens/server_list_screen.dart';
@@ -49,9 +48,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       theme: ThemeData.dark(),
       home: ServerListScreen(
-        serverInfoConsumer: ServerInfoConsumer(
-          client: Client(),
-        ),
+        serverInfoConsumer: ServerInfoConsumer(),
       ),
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
         GlobalWidgetsLocalizations.delegate,

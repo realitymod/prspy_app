@@ -1,8 +1,8 @@
 import 'package:flag/flag_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:prspy/helpers/nullable_string_helper.dart';
 import 'package:prspy/models/server.dart';
-import 'package:prspy/nullable_string_helper.dart';
 import 'package:prspy/screens/map_detail_screen.dart';
 import 'package:prspy/widgets/custom_description.dart';
 import 'package:url_launcher/url_launcher_string.dart';
