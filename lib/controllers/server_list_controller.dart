@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:prspy/consumers/server_info_consumer.dart';
 import 'package:prspy/enums/fetch_status.dart';
@@ -38,9 +36,7 @@ class ServerListController {
       );
       filteredServers = allServers;
       fetchStatus.value = FetchStatus.fetched;
-    } catch (err, stack) {
-      log(err.toString());
-      log(stack.toString());
+    } catch (err) {
       if (filteredServers.isNotEmpty) {
         fetchStatus.value = FetchStatus.fetched;
       } else {

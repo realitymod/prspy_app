@@ -28,9 +28,9 @@ class MapGalleryConsumer {
         Uri.https('realitymod.com', 'mapgallery/json/vehicles.json'),
       );
       if (response.statusCode == 200) {
-        List<dynamic> vehiclesJson = json.decode(response.body);
-        for (Map<String, dynamic> vehiclesData in vehiclesJson) {
-          Asset.defaultAssets.add(Asset.fromJson(vehiclesData));
+        List<dynamic> assetsJson = json.decode(response.body);
+        for (Map<String, dynamic> assetData in assetsJson) {
+          Asset.defaultAssets.add(Asset.fromJson(assetData));
         }
       } else {
         throw Exception(

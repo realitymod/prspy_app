@@ -24,9 +24,9 @@ class ServerInfoConsumer {
     );
 
     if (response.statusCode == 200) {
-      Map<String, dynamic> serversData = json.decode(response.body);
+      Map<String, dynamic> serversJson = json.decode(response.body);
       List<Server> servers = <Server>[];
-      for (Map<String, dynamic> serverData in serversData['servers']) {
+      for (Map<String, dynamic> serverData in serversJson['servers']) {
         servers.add(Server.fromJson(serverData));
       }
       return servers;
