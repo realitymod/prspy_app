@@ -1,4 +1,4 @@
-import 'package:flag/flag.dart';
+import 'package:flag/flag_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/widgets/custom_server_list_tile_subtitle.dart';
@@ -55,17 +55,17 @@ class CustomServerListTile extends StatelessWidget {
   ///
   ///
   Widget _serverFlag() {
-    if (server.countryFlag != '??') {
-      return Flag.fromString(
-        server.countryFlag,
-        width: 17,
+    if (server.countryFlag == '??') {
+      return Image.asset(
+        'assets/flags/unknown.png',
         height: 17,
+        width: 17,
       );
     }
-    return Image.asset(
-      'assets/flags/unknown.png',
-      height: 17,
+    return Flag.fromString(
+      server.countryFlag,
       width: 17,
+      height: 17,
     );
   }
 }
