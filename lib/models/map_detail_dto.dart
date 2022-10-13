@@ -51,10 +51,8 @@ class MapDetailDTO {
   ///
   ///
   ///
-  bool _checkIfAssetExists(String assetKey) {
-    return Asset.defaultAssets
-        .any((Asset element) => element.key.toLowerCase() == assetKey);
-  }
+  bool _checkIfAssetExists(String assetKey) => Asset.defaultAssets
+      .any((Asset element) => element.key.toLowerCase() == assetKey);
 
   ///
   ///

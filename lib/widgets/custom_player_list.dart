@@ -30,6 +30,18 @@ class _CustomPlayerListState extends State<CustomPlayerList>
     with AutomaticKeepAliveClientMixin {
   final Config _config = Config();
 
+  late int _totalScore;
+  late int _totalKills;
+  late int _totalDeaths;
+
+  @override
+  void initState() {
+    _totalDeaths = _sumDeaths;
+    _totalKills = _sumKills;
+    _totalScore = _sumScores;
+    super.initState();
+  }
+
   ///
   ///
   ///
@@ -47,20 +59,85 @@ class _CustomPlayerListState extends State<CustomPlayerList>
         _playerListTileHeader(),
         Expanded(
           child: ListView.separated(
-            itemCount: widget.players.length,
+            itemCount: widget.players.length + 1,
             separatorBuilder: (BuildContext context, int index) =>
                 const Divider(
               color: Colors.white,
               height: 0,
             ),
             itemBuilder: (BuildContext context, int index) {
-              return _playerListTile(widget.players.elementAt(index));
+              print('Index: $index');
+              if (index < widget.players.length) {
+                return _playerListTile(widget.players.elementAt(index));
+              }
+              return _totalTeamScore();
             },
           ),
         ),
       ],
     );
   }
+
+  ///
+  ///
+  ///
+  ListTile _totalTeamScore() {
+    return ListTile(
+      title: const Text('Total Score'),
+      trailing: Wrap(
+        children: <Widget>[
+          SizedBox(
+            width: 50,
+            child: Text(
+              _totalScore.toString(),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(
+            width: 43,
+            child: Text(
+              _totalKills.toString(),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(
+            width: 43,
+            child: Text(
+              _totalDeaths.toString(),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(
+            width: 50,
+          ),
+        ],
+      ),
+    );
+  }
+
+  ///
+  ///
+  ///
+  int get _sumScores => widget.players.fold(
+        0,
+        (int previousValue, Player element) => previousValue += element.score,
+      );
+
+  ///
+  ///
+  ///
+  int get _sumKills => widget.players.fold(
+        0,
+        (int previousValue, Player element) => previousValue += element.kills,
+      );
+
+  ///
+  ///
+  ///
+  int get _sumDeaths => widget.players.fold(
+        0,
+        (int previousValue, Player element) => previousValue += element.deaths,
+      );
 
   ///
   ///

@@ -18,11 +18,4 @@ class Friend {
   Friend.fromJson(Map<String, dynamic> map) {
     nickname = map['nickname'];
   }
-
-  ///
-  ///
-  ///
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{'nickname': nickname};
-  }
 }

@@ -80,7 +80,5 @@ class Faction {
   ///
   ///
   ///
-  String get flagAsset {
-    return 'assets/images/faction_flags/$flag';
-  }
+  String get flagAsset => 'assets/images/faction_flags/$flag';
 }

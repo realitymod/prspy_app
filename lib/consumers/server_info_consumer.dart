@@ -7,26 +7,26 @@ import 'package:prspy/models/server.dart';
 ///
 ///
 class ServerInfoConsumer {
-  late final Client _client;
+  late final Client _httpClient;
 
   ///
   ///
   ///
-  ServerInfoConsumer({required Client client}) : _client = client;
+  ServerInfoConsumer({Client? httpClient})
+      : _httpClient = httpClient ?? Client();
 
   ///
   ///
   ///
   Future<List<Server>> fetchServerList() async {
-    Response response = await _client.get(
+    Response response = await _httpClient.get(
       Uri.https('servers.realitymod.com', 'api/ServerInfo'),
     );
 
     if (response.statusCode == 200) {
-      Map<String, dynamic> serversData = json.decode(response.body);
-      // Map<String, dynamic> serversData = json.decode(TestOnly.serverList());
+      Map<String, dynamic> serversJson = json.decode(response.body);
       List<Server> servers = <Server>[];
-      for (Map<String, dynamic> serverData in serversData['servers']) {
+      for (Map<String, dynamic> serverData in serversJson['servers']) {
         servers.add(Server.fromJson(serverData));
       }
       return servers;
