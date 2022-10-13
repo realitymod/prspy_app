@@ -66,7 +66,6 @@ class _CustomPlayerListState extends State<CustomPlayerList>
               height: 0,
             ),
             itemBuilder: (BuildContext context, int index) {
-              print('Index: $index');
               if (index < widget.players.length) {
                 return _playerListTile(widget.players.elementAt(index));
               }
