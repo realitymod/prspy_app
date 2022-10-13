@@ -30,11 +30,7 @@ class CustomServerListTile extends StatelessWidget {
         minLeadingWidth: 25,
         leading: Container(
           height: double.infinity,
-          child: Flag.fromString(
-            server.countryFlag,
-            width: 17,
-            height: 17,
-          ),
+          child: _serverFlag(),
         ),
         title: FittedBox(
           fit: BoxFit.scaleDown,
@@ -52,6 +48,24 @@ class CustomServerListTile extends StatelessWidget {
         ),
         onTap: onTap,
       ),
+    );
+  }
+
+  ///
+  ///
+  ///
+  Widget _serverFlag() {
+    if (server.countryFlag != '??') {
+      return Flag.fromString(
+        server.countryFlag,
+        width: 17,
+        height: 17,
+      );
+    }
+    return Image.asset(
+      'assets/flags/unknown.png',
+      height: 17,
+      width: 17,
     );
   }
 }
