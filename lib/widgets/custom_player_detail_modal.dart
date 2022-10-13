@@ -73,7 +73,8 @@ class CustomPlayerDetailModal extends StatelessWidget {
                       isFriend ? Icons.person_remove : Icons.person_add,
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: isFriend ? Colors.redAccent : Colors.green,
+                      backgroundColor:
+                          isFriend ? Colors.redAccent : Colors.green,
                     ),
                   ),
                 ),
