@@ -20,9 +20,9 @@ dependencies:
   # https://pub.dev/packages/marquee
   marquee: 2.2.3
   # https://pub.dev/packages/url_launcher
-  url_launcher: 6.1.5
+  url_launcher: 6.1.6
   # https://pub.dev/packages/package_info_plus
-  package_info_plus: 1.4.3+1
+  package_info_plus: 2.0.0
   # https://pub.dev/packages/shared_preferences
   shared_preferences: 2.0.15
   # https://pub.dev/packages/cupertino_icons
@@ -32,7 +32,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   # https://pub.dev/packages/dart_code_metrics
-  dart_code_metrics: 4.17.1
+  dart_code_metrics: 4.21.1
   # https://pub.dev/packages/flutter_lints
   flutter_lints: 2.0.1
 
@@ -43,3 +43,4 @@ flutter:
     - assets/images/
     - assets/images/faction_flags/
     - assets/images/asset_icons/
+    - assets/flags/
