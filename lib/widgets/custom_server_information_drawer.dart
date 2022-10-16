@@ -1,4 +1,3 @@
-import 'package:flag/flag_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prspy/helpers/nullable_string_helper.dart';
@@ -143,11 +142,7 @@ class CustomServerInformationDrawer extends StatelessWidget {
                     spacing: 10,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: <Widget>[
-                      Flag.fromString(
-                        server.countryFlag,
-                        width: 25,
-                        height: 25,
-                      ),
+                      server.serverFlag(),
                       Tooltip(
                         message:
                             server.properties.operatingSystem.contains('linux')
