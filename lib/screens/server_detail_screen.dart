@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
+import 'package:prspy/enums/team.dart';
 import 'package:prspy/models/player.dart';
 import 'package:prspy/models/server.dart';
 import 'package:prspy/widgets/custom_player_list.dart';
@@ -60,18 +61,17 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
           ),
           bottom: TabBar(
             indicatorColor: Colors.white,
+            labelPadding: EdgeInsets.zero,
             tabs: <Widget>[
               CustomTeamTab(
                 faction: widget.server.properties.map.faction2,
-                totalPlayers: widget.server.players
-                    .where((Player player) => player.team == 2)
-                    .length,
+                team: Team.bluefor,
+                totalPlayers: widget.server.players.where((Player player) => player.team == 2).length,
               ),
               CustomTeamTab(
                 faction: widget.server.properties.map.faction1,
-                totalPlayers: widget.server.players
-                    .where((Player player) => player.team == 1)
-                    .length,
+                totalPlayers: widget.server.players.where((Player player) => player.team == 1).length,
+                team: Team.opfor,
               ),
             ],
           ),
@@ -87,14 +87,10 @@ class _ServerDetailScreenState extends State<ServerDetailScreen> {
         body: TabBarView(
           children: <Widget>[
             CustomPlayerList(
-              players: widget.server.players
-                  .where((Player player) => player.team == 2)
-                  .toList(),
+              players: widget.server.players.where((Player player) => player.team == 2).toList(),
             ),
             CustomPlayerList(
-              players: widget.server.players
-                  .where((Player player) => player.team == 1)
-                  .toList(),
+              players: widget.server.players.where((Player player) => player.team == 1).toList(),
             ),
           ],
         ),
