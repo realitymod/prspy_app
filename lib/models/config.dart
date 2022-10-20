@@ -22,6 +22,9 @@ class Config {
 
   ValueNotifier<int> friendsListNotifier = ValueNotifier<int>(0);
 
+  Color opforColor = const Color(0XFF941B0C);
+  Color blueforColor = const Color(0XFF2C99AF);
+
   ///
   ///
   ///

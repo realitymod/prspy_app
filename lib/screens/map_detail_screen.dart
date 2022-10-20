@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prspy/consumers/map_gallery_consumer.dart';
+import 'package:prspy/enums/team.dart';
 import 'package:prspy/models/map_detail.dart';
 import 'package:prspy/models/map_detail_dto.dart';
 import 'package:prspy/widgets/custom_fetching_data_indicator.dart';
@@ -78,38 +79,120 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
           );
         }
         final MapDetailDTO mapDetail = snapshot.data!;
-        return DefaultTabController(
-          length: 2,
-          child: Scaffold(
-            appBar: AppBar(
-              title: _pageTitle(),
-              actions: <Widget>[
-                _viewInMapGallery(),
-              ],
-              bottom: TabBar(
-                indicatorColor: Colors.white,
-                tabs: <Widget>[
-                  CustomTeamTab(
-                    faction: mapDetail.teams!.last,
-                  ),
-                  CustomTeamTab(
-                    faction: mapDetail.teams!.first,
-                  ),
-                ],
-              ),
-            ),
-            body: TabBarView(
-              children: <Widget>[
-                CustomMapAssetsListView(assets: mapDetail.team1Assets!),
-                CustomMapAssetsListView(assets: mapDetail.team2Assets!),
-              ],
-            ),
-          ),
+        return LayoutBuilder(
+          builder: (BuildContext p0, BoxConstraints p1) {
+            if (p1.maxWidth <= 720) {
+              return _smartphoneView(mapDetail);
+            } else {
+              return _tabletView(mapDetail);
+            }
+          },
         );
       },
     );
   }
 
+  Widget _tabletView(MapDetailDTO mapDetail) {
+    return Scaffold(
+      appBar: AppBar(
+        title: _pageTitle(),
+        actions: <Widget>[
+          _viewInMapGallery(),
+        ],
+      ),
+      body: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.zero,
+                  color: const Color(0XFF941B0C),
+                  child: CustomTeamTab(
+                    faction: mapDetail.teams!.last,
+                    team: Team.bluefor,
+                  ),
+                ),
+                Expanded(
+                  child: CustomMapAssetsListView(
+                    assets: mapDetail.team1Assets!,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const VerticalDivider(
+            width: 1,
+            thickness: 1,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.zero,
+                  color: const Color(0XFF2C99AF),
+                  child: CustomTeamTab(
+                    faction: mapDetail.teams!.first,
+                    team: Team.opfor,
+                  ),
+                ),
+                Expanded(
+                  child: CustomMapAssetsListView(
+                    assets: mapDetail.team2Assets!,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  ///
+  ///
+  ///
+  DefaultTabController _smartphoneView(MapDetailDTO mapDetail) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: _pageTitle(),
+          actions: <Widget>[
+            _viewInMapGallery(),
+          ],
+          bottom: TabBar(
+            indicatorColor: Colors.white,
+            labelPadding: EdgeInsets.zero,
+            tabs: <Widget>[
+              CustomTeamTab(
+                faction: mapDetail.teams!.last,
+                team: Team.bluefor,
+              ),
+              CustomTeamTab(
+                faction: mapDetail.teams!.first,
+                team: Team.opfor,
+              ),
+            ],
+          ),
+        ),
+        body: SafeArea(
+          child: TabBarView(
+            children: <Widget>[
+              CustomMapAssetsListView(assets: mapDetail.team1Assets!),
+              CustomMapAssetsListView(assets: mapDetail.team2Assets!),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  ///
+  ///
+  ///
   Widget _pageTitle() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
