@@ -109,9 +109,16 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
                 Container(
                   padding: EdgeInsets.zero,
                   color: const Color(0XFF941B0C),
-                  child: CustomTeamTab(faction: mapDetail.teams!.last, team: Team.opfor),
+                  child: CustomTeamTab(
+                    faction: mapDetail.teams!.last,
+                    team: Team.bluefor,
+                  ),
                 ),
-                Expanded(child: CustomMapAssetsListView(assets: mapDetail.team1Assets!)),
+                Expanded(
+                  child: CustomMapAssetsListView(
+                    assets: mapDetail.team1Assets!,
+                  ),
+                ),
               ],
             ),
           ),
@@ -126,9 +133,16 @@ class _MapDetailScreenState extends State<MapDetailScreen> {
                 Container(
                   padding: EdgeInsets.zero,
                   color: const Color(0XFF2C99AF),
-                  child: CustomTeamTab(faction: mapDetail.teams!.last, team: Team.bluefor),
+                  child: CustomTeamTab(
+                    faction: mapDetail.teams!.first,
+                    team: Team.opfor,
+                  ),
                 ),
-                Expanded(child: CustomMapAssetsListView(assets: mapDetail.team2Assets!)),
+                Expanded(
+                  child: CustomMapAssetsListView(
+                    assets: mapDetail.team2Assets!,
+                  ),
+                ),
               ],
             ),
           ),
