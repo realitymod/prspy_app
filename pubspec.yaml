@@ -14,25 +14,23 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   # https://pub.dev/packages/http
-  http: 0.13.5
+  http: 1.1.0
   # https://pub.dev/packages/flag
-  flag: 6.0.0
+  flag: 7.0.0
   # https://pub.dev/packages/marquee
   marquee: 2.2.3
   # https://pub.dev/packages/url_launcher
-  url_launcher: 6.1.6
+  url_launcher: 6.1.12
   # https://pub.dev/packages/package_info_plus
-  package_info_plus: 2.0.0
+  package_info_plus: 4.1.0
   # https://pub.dev/packages/shared_preferences
-  shared_preferences: 2.0.15
+  shared_preferences: 2.2.0
   # https://pub.dev/packages/cupertino_icons
   cupertino_icons: 1.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  # https://pub.dev/packages/dart_code_metrics
-  dart_code_metrics: 4.21.1
   # https://pub.dev/packages/flutter_lints
   flutter_lints: 2.0.1
 
