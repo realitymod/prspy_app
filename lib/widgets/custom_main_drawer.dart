@@ -51,8 +51,8 @@ class CustomMainDrawer extends StatelessWidget {
               ),
               ListTile(
                 style: ListTileStyle.drawer,
-                title: Wrap(
-                  children: const <Widget>[
+                title: const Wrap(
+                  children: <Widget>[
                     Text('Map Gallery'),
                     Icon(
                       Icons.open_in_new,
@@ -67,8 +67,8 @@ class CustomMainDrawer extends StatelessWidget {
               ),
               ListTile(
                 style: ListTileStyle.drawer,
-                title: Wrap(
-                  children: const <Widget>[
+                title: const Wrap(
+                  children: <Widget>[
                     Text('Discord'),
                     Icon(
                       Icons.open_in_new,
@@ -83,8 +83,8 @@ class CustomMainDrawer extends StatelessWidget {
               ),
               ListTile(
                 style: ListTileStyle.drawer,
-                title: Wrap(
-                  children: const <Widget>[
+                title: const Wrap(
+                  children: <Widget>[
                     Text('Forums'),
                     Icon(
                       Icons.open_in_new,
@@ -99,8 +99,8 @@ class CustomMainDrawer extends StatelessWidget {
               ),
               ListTile(
                 style: ListTileStyle.drawer,
-                title: Wrap(
-                  children: const <Widget>[
+                title: const Wrap(
+                  children: <Widget>[
                     Text('Donate'),
                     Icon(
                       Icons.open_in_new,
@@ -117,8 +117,8 @@ class CustomMainDrawer extends StatelessWidget {
               ),
               ListTile(
                 style: ListTileStyle.drawer,
-                title: Wrap(
-                  children: const <Widget>[
+                title: const Wrap(
+                  children: <Widget>[
                     Text('News'),
                     Icon(
                       Icons.open_in_new,
@@ -132,8 +132,8 @@ class CustomMainDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Wrap(
-                  children: const <Widget>[
+                title: const Wrap(
+                  children: <Widget>[
                     Text('Found a bug?'),
                     Icon(
                       Icons.open_in_new,
@@ -141,9 +141,9 @@ class CustomMainDrawer extends StatelessWidget {
                     ),
                   ],
                 ),
-                subtitle: Column(
+                subtitle: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Text('Or have any ideas for improvement?'),
                     Text('Open a issue on Github.'),
                   ],
