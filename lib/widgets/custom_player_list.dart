@@ -148,10 +148,10 @@ class _CustomPlayerListState extends State<CustomPlayerList>
   ///
   ///
   Widget _playerListTileHeader() {
-    return ListTile(
-      title: const SelectableText('Player name'),
+    return const ListTile(
+      title: SelectableText('Player name'),
       trailing: Wrap(
-        children: const <Widget>[
+        children: <Widget>[
           SizedBox(
             width: 50,
             child: SelectableText(

@@ -89,7 +89,8 @@ class _ServerListScreenState extends State<ServerListScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 3),
                   itemCount: _controller.filteredServers.length,
                   itemBuilder: (BuildContext context, int index) {
-                    Server server = _controller.filteredServers.elementAt(index);
+                    Server server =
+                        _controller.filteredServers.elementAt(index);
                     return CustomServerListTile(
                       server: server,
                       onTap: () {
@@ -115,10 +116,10 @@ class _ServerListScreenState extends State<ServerListScreen> {
   ///
   ///
   Widget _errorOnFetching() {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
+        children: <Widget>[
           Icon(
             Icons.warning,
             size: 45,

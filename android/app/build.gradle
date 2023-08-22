@@ -50,7 +50,7 @@ android {
     defaultConfig {
         applicationId "com.realitymod.prspy"
         minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion flutter.compileSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
