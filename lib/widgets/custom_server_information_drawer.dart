@@ -117,10 +117,11 @@ class CustomServerInformationDrawer extends StatelessWidget {
                     label: 'Next map:',
                     value: server.properties.nextMap,
                   ),
-                CustomDescription(
-                  label: 'Server version:',
-                  value: server.properties.serverVersion,
-                ),
+                if(server.properties.serverVersion != null)
+                  CustomDescription(
+                    label: 'Server version:',
+                    value: server.properties.serverVersion!,
+                  ),
                 CustomDescription(
                   label: 'Server Message',
                   value: server.properties.sponsortext.trim(),
