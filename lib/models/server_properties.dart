@@ -7,7 +7,7 @@ class ServerProperties {
   late String gamename;
   late String hostname;
   late String gamever;
-  late String serverVersion;
+  late String? serverVersion;
   late String gamevariant;
   late int numplayers;
   late int maxplayers;
@@ -44,10 +44,17 @@ class ServerProperties {
     reservedSlots = int.parse(json['bf2_reservedslots']);
     map = MapDetail.fromJson(json);
 
-    // Get the server version from hostname
-    serverVersion = hostname.substring(4, hostname.indexOf(']'));
-    // Remove the version from hostname
-    hostname = hostname.substring(hostname.indexOf(']') + 1);
+
+
+    if(hostname.startsWith('[') && hostname.contains(']')){
+      // Get the server version from hostname
+      serverVersion = hostname.substring(4, hostname.indexOf(']'));
+      // Remove the version from hostname
+      hostname = hostname.substring(hostname.indexOf(']') + 1);
+    } else {
+      serverVersion = null;
+    }
+
 
     _extractNextMapFromSponsorText();
     sponsortext = sponsortext.replaceAll('-', '').replaceAll('|', '\n').trim();
