@@ -12,7 +12,6 @@ linter:
     avoid_type_to_string: true
     cancel_subscriptions: true
     close_sinks: true
-    invariant_booleans: true # experimental
     literal_only_boolean_expressions: true
     no_adjacent_strings_in_list: true
     test_types_in_equals: true
