@@ -270,7 +270,7 @@ class _CustomPlayerListState extends State<CustomPlayerList>
   ///
   void _openPlayerStats(Player player) {
     String encodedUri = Uri.encodeFull(
-      'https://prstats.tk/player/find?name=${player.prStatsNormalizedPlayerName}',
+      'https://prstats.realitymod.com/player/find?name=${player.prStatsNormalizedPlayerName}',
     );
     launchUrlString(encodedUri, mode: LaunchMode.externalApplication);
   }
