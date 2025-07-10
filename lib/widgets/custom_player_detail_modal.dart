@@ -68,9 +68,11 @@ class CustomPlayerDetailModal extends StatelessWidget {
                     label: Text(
                       isFriend ? 'Remove Friend' : 'Add Friend',
                       textAlign: TextAlign.center,
+                      style: const TextStyle(color: Colors.white),
                     ),
                     icon: Icon(
                       isFriend ? Icons.person_remove : Icons.person_add,
+                      color: Colors.white,
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor:

@@ -235,7 +235,7 @@ class _CustomPlayerListState extends State<CustomPlayerList>
               ),
             ],
           ),
-          tileColor: isFriend ? Colors.blue.withOpacity(0.2) : null,
+          tileColor: isFriend ? Colors.blue.withValues(alpha: 0.2) : null,
           onTap: () {
             if (!player.isAi) {
               showModalBottomSheet(
